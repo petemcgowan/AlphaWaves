@@ -4,21 +4,21 @@ import {
   Dimensions,
   StyleSheet,
   View,
+  Image,
   Animated,
+  Platform,
   Text,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native'
 import rainSounds from '../model/data'
 import { useNavigation } from '@react-navigation/native'
-import CSlide1 from '../screens/CSlide1'
-import CSlide2 from '../screens/CSlide2'
 import TimerControls from './TimerControls'
 import CountdownTimer from './CountdownTimer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Video from 'react-native-video'
 
 const { width, height } = Dimensions.get('window')
-const slides = [CSlide1, CSlide2]
 
 const ComponentDeck = () => {
   const scrollX = useRef(new Animated.Value(0)).current
@@ -33,53 +33,19 @@ const ComponentDeck = () => {
   const [seconds, setSeconds] = useState(0)
   const [intentionalVideoPlay, setIntentionalVideoPlay] = useState(true)
 
-  const videos = [
-    require('../../assets/videos/rainInPorchOverlookingForest.mp4'),
-    require('../../assets/videos/RainInACar540x960.mp4'),
-    require('../../assets/videos/HeavyRainOnWindowOnTheTrain.mp4'),
-  ]
-
   rainSounds[songIndex].playingSound.setVolume(0.9)
   rainSounds[songIndex].playingSound.setNumberOfLoops(-1)
-
-  const onScroll = (event: any) => {
-    const slide = Math.ceil(
-      event.nativeEvent.contentOffset.x /
-        event.nativeEvent.layoutMeasurement.width
-    )
-    if (slide !== activeSlide) {
-      setActiveSlide(slide)
-    }
-  }
-
-  const onStartNowPress = () => {
-    navigation.navigate('RainPlayer')
-  }
-
-  const onLinkPress = () => {
-    console.log('LinkPress')
-  }
 
   useEffect(() => {
     scrollX.addListener(({ value }) => {
       const index = Math.round(value / width)
-      // console.log('scrollX, index:' + index)
       if (index === rainSounds.length) {
         console.log('END OF SLIDES', songIndex)
-        // end of slides
-        // // scroll back to the top
-        // rainSliderRef.current.scrollToOffset({
-        //   offset: 0,
-        //   animated: true,
-        // })
       } else {
-        // console.log('useEffect, checking index', index, 'songIndex', songIndex) //
         if (index !== songIndex) {
           if (rainSounds[songIndex].playingSound._playing) {
             // if previous sound if playing, stop it
-            // console.log('stopping songIndex', songIndex)
             rainSounds[songIndex].playingSound.stop()
-            // console.log('starting index', index)
             // play the newly selected sound
             rainSounds[index].playingSound.play()
           }
@@ -112,23 +78,9 @@ const ComponentDeck = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={onStartNowPress}>
-        <Text style={styles.buttonText}>Start Now</Text>
-      </TouchableOpacity>
       <Animated.ScrollView
         horizontal
         pagingEnabled
-        // onScroll={onScroll}
-        // onScroll={Animated.ScrollView(
-        //   [
-        //     {
-        //       nativeEvent: {
-        //         contentOffset: { x: scrollX },
-        //       },
-        //     },
-        //   ],
-        //   { useNativeDriver: true }
-        // )}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: true } // Set to false, adjust according to your needs
@@ -139,17 +91,34 @@ const ComponentDeck = () => {
       >
         {rainSounds.map((video, index) => (
           <View style={styles.videoContainer} key={index}>
-            <Video
-              source={video.videoBackground}
-              style={styles.video}
-              muted={true}
-              volume={0.5}
-              rate={0.6}
-              repeat={true}
-              buffered={true}
-              paused={!playing}
-              resizeMode="cover"
-            />
+            {Platform.OS === 'ios' && (
+              <Video
+                source={video.videoBackground}
+                style={styles.video}
+                muted={true}
+                volume={0.5}
+                rate={0.6}
+                repeat={true}
+                // buffered={true}
+                paused={!playing || !intentionalVideoPlay}
+                resizeMode="cover"
+              />
+            )}
+            {Platform.OS === 'android' && (
+              <Video
+                source={video.videoBackground}
+                style={styles.video}
+                poster={rainSounds[songIndex].videoPosterUri}
+                posterResizeMode="cover"
+                muted={true}
+                volume={0.5}
+                rate={0.6}
+                repeat={true}
+                // buffered={true}
+                paused={!playing || !intentionalVideoPlay}
+                resizeMode="cover"
+              />
+            )}
           </View>
         ))}
       </Animated.ScrollView>
@@ -169,18 +138,7 @@ const ComponentDeck = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.pagination}>
-        {slides.map((_, index) => (
-          <Text
-            key={index}
-            style={index === activeSlide ? styles.activeDot : styles.dot}
-          >
-            •
-          </Text>
-        ))}
-      </View>
-
-      {/* <View style={styles.timerCountdown}>
+      <View style={styles.timerCountdown}>
         {timerVisible ? (
           <View style={styles.timerCountdown}>
             <CountdownTimer
@@ -197,7 +155,7 @@ const ComponentDeck = () => {
         ) : (
           <View style={styles.timerCountdown}></View>
         )}
-      </View> */}
+      </View>
       <View style={styles.timerControls}>
         <TimerControls
           setTimerVisible={setTimerVisible}
@@ -215,37 +173,33 @@ const ComponentDeck = () => {
             rainSounds[songIndex].timerDialogBackgroundColor
           }
           timerDialogFontColor={rainSounds[songIndex].timerDialogFontColor}
+          songIndex={songIndex}
         />
       </View>
     </View>
   )
 }
 
-// {slides.map((slide, index) => (
-//   <View style={[styles.slide, { backgroundColor: slide }]} key={index}>
-//     <Text style={styles.text}>Slide {index + 1}</Text>
-//   </View>
-// ))}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(30, 35, 58)',
+    backgroundColor: 'rgb(0, 0, 0)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   timerCountdown: {
-    flexBasis: '25%',
+    flexBasis: '20%',
     marginBottom: 15,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    left: 0,
+    bottom: '20%', // This needs to be adjusted according to the actual size of timerControls
+    right: 0,
   },
   timerControls: {
     flexBasis: '18%',
     marginBottom: 15,
-    // ...StyleSheet.absoluteFillObject,
-    // height: height,
-    // top: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
     position: 'absolute',
@@ -265,21 +219,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     color: 'white',
-  },
-  pagination: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: height * 0.3 + 10,
-  },
-  dot: {
-    fontSize: 50,
-    color: '#888',
-    margin: 5,
-  },
-  activeDot: {
-    fontSize: 50,
-    color: '#FFF',
-    margin: 5,
   },
   button: {
     position: 'absolute',
@@ -350,7 +289,7 @@ const styles = StyleSheet.create({
   },
   powerIcon: {
     opacity: 0.85,
-    paddingTop: 30,
+    paddingTop: 25,
     // paddingLeft: width / 37, // Ionicons don't centre properly without help
     // height: '100%',
     borderRadius: 70,
