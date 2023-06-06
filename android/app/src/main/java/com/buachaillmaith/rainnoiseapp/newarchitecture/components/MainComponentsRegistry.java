@@ -1,4 +1,4 @@
-package com.rainnoiseapp.newarchitecture.components;
+package com.buachaillmaith.rainnoiseapp.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

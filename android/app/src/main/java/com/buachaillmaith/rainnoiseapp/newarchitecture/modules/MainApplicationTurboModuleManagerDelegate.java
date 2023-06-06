@@ -1,4 +1,4 @@
-package com.rainnoiseapp.newarchitecture.modules;
+package com.buachaillmaith.rainnoiseapp.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
