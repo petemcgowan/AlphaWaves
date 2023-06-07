@@ -5,8 +5,6 @@ import SplashScreen from 'react-native-splash-screen'
 import CentralNavigation from './components/CentralNavigation'
 
 const App = () => {
-  // Ionicons.loadFont()
-
   useEffect(() => {
     SplashScreen.hide()
   }, [])
