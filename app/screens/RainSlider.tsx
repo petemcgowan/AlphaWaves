@@ -6,6 +6,7 @@ import {
   Animated,
   Platform,
   TouchableOpacity,
+  NativeModules,
 } from 'react-native'
 import rainSounds from '../model/data'
 import { useNavigation } from '@react-navigation/native'
@@ -31,17 +32,34 @@ const RainSlider = () => {
   rainSounds[songIndex].playingSound.setNumberOfLoops(-1)
 
   useEffect(() => {
+    if (Platform.OS === 'android') {
+      NativeModules.ExoPlayerModule.preparePlaylist([
+        'cozy_cabin_porch_with_heavy_rainstorm_trim',
+        'night_rain_on_a_car_trim',
+        'heavy1_rain_on_window_on_the_train',
+        'rain_hitting_a_campervan_roof_window',
+        'gentle_waves_on_a_small_white_rock_beach',
+      ])
+    }
     scrollX.addListener(({ value }) => {
       const index = Math.round(value / width)
       if (index === rainSounds.length) {
         console.log('END OF SLIDES', songIndex)
       } else {
         if (index !== songIndex) {
-          if (rainSounds[songIndex].playingSound._playing) {
-            // if previous sound if playing, stop it
-            rainSounds[songIndex].playingSound.stop()
-            // play the newly selected sound
-            rainSounds[index].playingSound.play()
+          if (Platform.OS === 'android') {
+            console.log('useEffect, index !== songIndex, index:', index)
+            console.log('useEffect, songIndex:', songIndex)
+            NativeModules.ExoPlayerModule.switchTrack(index)
+          }
+
+          if (Platform.OS === 'ios') {
+            if (rainSounds[songIndex].playingSound._playing) {
+              // if previous sound if playing, stop it
+              rainSounds[songIndex].playingSound.stop()
+              // play the newly selected sound
+              rainSounds[index].playingSound.play()
+            }
           }
           setSongIndex(index)
         }
@@ -54,19 +72,36 @@ const RainSlider = () => {
   }, [scrollX, songIndex, playing])
 
   const togglePlayback = () => {
-    if (rainSounds[songIndex].playingSound._playing) {
-      rainSounds[songIndex].playingSound.stop()
-      setPlaying(!playing)
-      if (timerVisible) setTimerVisible(false)
-    } else {
-      setPlaying(true)
-      rainSounds[songIndex].playingSound.play((success) => {
-        if (success) {
-          console.log('successfully finished playing')
+    if (Platform.OS === 'android') {
+      NativeModules.ExoPlayerModule.isTrackPlaying((isPlaying: boolean) => {
+        if (isPlaying) {
+          NativeModules.ExoPlayerModule.pauseTrack()
+          setPlaying(false)
+          if (timerVisible) setTimerVisible(false)
+          console.log('The track is playing')
         } else {
-          console.log('playback failed due to audio decoding errors')
+          setPlaying(true)
+          console.log('The track is not playing')
+          NativeModules.ExoPlayerModule.playTrack()
         }
       })
+    }
+
+    if (Platform.OS === 'ios') {
+      if (rainSounds[songIndex].playingSound._playing) {
+        rainSounds[songIndex].playingSound.stop()
+        setPlaying(!playing)
+        if (timerVisible) setTimerVisible(false)
+      } else {
+        setPlaying(true)
+        rainSounds[songIndex].playingSound.play((success) => {
+          if (success) {
+            console.log('successfully finished playing')
+          } else {
+            console.log('playback failed due to audio decoding errors')
+          }
+        })
+      }
     }
   }
 

@@ -1,33 +1,30 @@
 import React from 'react'
 import { View, Text, Dimensions, StyleSheet, Image } from 'react-native'
-import rain_falling_brain_alpha_waves_energy from '../../assets/images/rain_falling_brain_alpha_waves_energy.png'
+import surreal_sand_timer from '../../assets/images/surreal_sand_timer.png'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 const { width, height } = Dimensions.get('window')
 
-const Slide1 = () => {
-  const dominantColor = 'rgb(38, 27, 21)' // Dominant colour of image
+const Slide3 = () => {
+  const dominantColor = 'rgb(9, 21, 39)' // Dominant colour of image
 
   return (
     <View style={styles.slideContainer}>
       <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={rain_falling_brain_alpha_waves_energy}
-        />
+        <Image style={styles.image} source={surreal_sand_timer}></Image>
       </View>
       <View style={styles.textBox}>
         <Text style={styles.text}>
-          Alpha waves, ranging from 8 to 12 Hz, are produced by our brain in a
-          relaxed, meditative state. A lack of these waves indicates we're not
-          fully at ease.
+          Use the built-in timer to control the duration of alpha wave sounds.
+          Toggle video playback using the 'video' button for a customized
+          experience.
         </Text>
       </View>
     </View>
   )
 }
 
-export default Slide1
+export default Slide3
 
 const styles = StyleSheet.create({
   slideContainer: {
@@ -50,9 +47,9 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(2.3),
   },
   textBox: {
-    // flex: 0.6,
     flex: 1,
     width: width,
+
     justifyContent: 'center',
     alignItems: 'center',
   },
