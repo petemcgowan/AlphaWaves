@@ -6,14 +6,12 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native'
-import { TouchableOpacity, Modal, Pressable, Alert } from 'react-native'
-import { TimePicker } from 'react-native-simple-time-picker'
-import { Picker, PickerColumn, PickerItem } from 'react-native-picky'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Utils from './Utils'
 import rainSounds from '../model/data'
-
+import TimePickerModal from './TimePickerModal'
 const { width } = Dimensions.get('window')
 
 const secondOptions = Utils.selectionDropDownRange(0, 59).map(
@@ -44,6 +42,12 @@ interface TimerControlsProps {
   songIndex: number
 }
 
+export type ChangeHandler = (value: {
+  hours: number
+  minutes: number
+  seconds: number
+}) => void
+
 export default function TimerControls({
   setTimerVisible,
   hours,
@@ -62,7 +66,7 @@ export default function TimerControls({
 }: TimerControlsProps) {
   const [modalVisible, setModalVisible] = useState(false)
 
-  const handleChange = (value: {
+  const handleChange: ChangeHandler = (value: {
     hours: number
     minutes: number
     seconds: number
@@ -75,110 +79,25 @@ export default function TimerControls({
   return (
     <View>
       <SafeAreaView>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.')
-            setModalVisible(!modalVisible)
-          }}
-        >
-          <View>
-            <View
-              style={[
-                styles.modalView,
-                { backgroundColor: timerDialogBackgroundColor },
-              ]}
-            >
-              {Platform.OS === 'ios' && (
-                <TimePicker
-                  textColor={timerDialogFontColor}
-                  value={{ hours, minutes, seconds }}
-                  onChange={handleChange}
-                  // hoursUnit="hr"
-                  // minutesUnit="min"
-                  // secondsUnit="sec"
-                  pickerShows={['hours', 'minutes', 'seconds']}
-                />
-              )}
-              {Platform.OS === 'android' && (
-                <Picker textColor={timerDialogFontColor} textSize={60}>
-                  <PickerColumn
-                    selectedValue={hours}
-                    onChange={(event) => setHours(+event.value.toString())}
-                  >
-                    {hourOptions.map((hourValue) => (
-                      <PickerItem
-                        label={hourValue.toString()}
-                        value={hourValue.toString()}
-                        key={hourValue}
-                      />
-                    ))}
-                  </PickerColumn>
-                  <PickerColumn
-                    selectedValue={minutes}
-                    onChange={(event) => setMinutes(+event.value.toString())}
-                  >
-                    {minuteOptions.map((minuteValue) => (
-                      <PickerItem
-                        label={minuteValue.toString()}
-                        value={minuteValue.toString()}
-                        key={minuteValue}
-                      />
-                    ))}
-                  </PickerColumn>
-                  <PickerColumn
-                    selectedValue={seconds}
-                    onChange={(event) => setSeconds(+event.value.toString())}
-                  >
-                    {secondOptions.map((secondValue) => (
-                      <PickerItem
-                        label={secondValue.toString()}
-                        value={secondValue.toString()}
-                        key={secondValue}
-                      />
-                    ))}
-                  </PickerColumn>
-                </Picker>
-              )}
-              <View style={styles.modalBottomButtons}>
-                <Pressable
-                  style={[
-                    styles.button,
-                    {
-                      backgroundColor: timerDialogFontColor,
-                    },
-                  ]}
-                  onPress={() => setModalVisible(false)}
-                >
-                  <Text style={styles.textStyle}>Back</Text>
-                </Pressable>
-                <Pressable
-                  style={[
-                    styles.button,
-                    {
-                      backgroundColor: timerDialogFontColor,
-                    },
-                  ]}
-                  onPress={() => {
-                    if (hours === 0 && minutes === 0 && seconds === 0) {
-                      setModalVisible(false)
-                      return
-                    }
-                    setModalVisible(!modalVisible)
-                    setTimerVisible(true)
-                    if (!playing) {
-                      togglePlayback()
-                    }
-                  }}
-                >
-                  <Text style={styles.textStyle}>Confirm</Text>
-                </Pressable>
-              </View>
-            </View>
-          </View>
-        </Modal>
+        <TimePickerModal
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          timerDialogBackgroundColor={timerDialogBackgroundColor}
+          timerDialogFontColor={timerDialogFontColor}
+          hours={hours}
+          minutes={minutes}
+          seconds={seconds}
+          setHours={setHours}
+          setMinutes={setMinutes}
+          setSeconds={setSeconds}
+          handleChange={handleChange}
+          hourOptions={hourOptions}
+          minuteOptions={minuteOptions}
+          secondOptions={secondOptions}
+          playing={playing}
+          togglePlayback={togglePlayback}
+          setTimerVisible={setTimerVisible}
+        />
       </SafeAreaView>
       <View style={styles.bottomContainer}>
         <View style={styles.pagination}>
@@ -255,34 +174,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    width: '50%',
-    borderRadius: 10,
-    padding: 10,
-    elevation: 2,
-  },
-  modalView: {
-    marginTop: 80,
-    borderRadius: 20,
-    padding: 20,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 2,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalBottomButtons: {
-    flexDirection: 'row',
-    width: '100%',
-  },
-  textStyle: {
-    color: '#777777',
-    textAlign: 'center',
-    fontSize: 22,
   },
 })

@@ -5,18 +5,22 @@ import {
   StyleSheet,
   View,
   Text,
+  SafeAreaView,
   TouchableOpacity,
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import Slide1 from '../screens/Slide1'
 import Slide2 from '../screens/Slide2'
+import Slide3 from '../screens/Slide3'
 
 const { width, height } = Dimensions.get('window')
-const slides = [Slide1, Slide2]
+const slides = [Slide1, Slide2, Slide3]
 
 const Slider = () => {
   const [activeSlide, setActiveSlide] = useState(0)
   const navigation = useNavigation()
+  const [backgroundColor, setBackgroundColor] = useState('#000')
+  const slideColors = ['rgb(38, 27, 21)', 'rgb(25, 26, 29)', 'rgb(9, 21, 39)']
 
   const onScroll = (event: any) => {
     const slide = Math.ceil(
@@ -25,11 +29,20 @@ const Slider = () => {
     )
     if (slide !== activeSlide) {
       setActiveSlide(slide)
+
+      console.log('activeSlide:' + activeSlide + ', slide:' + slide)
+      console.log('slides.length:' + slides.length)
+      if (slide > slides.length - 1) {
+        console.log('Slides end reached')
+      } else {
+        setBackgroundColor(slideColors[slide]) // Set the background color when the slide changes
+        console.log(slideColors[slide])
+      }
     }
   }
 
   const onStartNowPress = () => {
-    navigation.navigate('SliderDeck')
+    navigation.navigate('RainSlider')
   }
 
   const onLinkPress = () => {
@@ -39,7 +52,9 @@ const Slider = () => {
   useEffect(() => {}, [])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: backgroundColor }]}
+    >
       <ScrollView
         horizontal
         pagingEnabled
@@ -64,47 +79,40 @@ const Slider = () => {
         ))}
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={onStartNowPress}>
-        <Text style={styles.buttonText}>Start Now</Text>
-      </TouchableOpacity>
+      <View style={styles.bottomContainer}>
+        <TouchableOpacity style={styles.button} onPress={onStartNowPress}>
+          <Text style={styles.buttonText}>Start Now</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.link} onPress={onLinkPress}>
-        <Text style={styles.linkText}>Your Link Text Here</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={styles.link} onPress={onLinkPress}>
+          <Text style={styles.linkText}>Your Link Text Here</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   )
 }
-
-// {slides.map((slide, index) => (
-//   <View style={[styles.slide, { backgroundColor: slide }]} key={index}>
-//     <Text style={styles.text}>Slide {index + 1}</Text>
-//   </View>
-// ))}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(30, 35, 58)',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   scrollView: {
-    height: height * 0.7,
-    flexDirection: 'row',
+    flex: 0.55,
+    paddingTop: 20,
   },
-  slide: {
+  imageBox: {
     width,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 24,
-    color: 'white',
-  },
   pagination: {
     flexDirection: 'row',
     position: 'absolute',
+    left: 0,
+    right: 0,
     bottom: height * 0.3 + 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   dot: {
     fontSize: 50,
@@ -143,6 +151,15 @@ const styles = StyleSheet.create({
     color: 'rgb(44, 207, 157)',
     fontSize: 16,
     textDecorationLine: 'underline',
+  },
+  buttonContainer: {
+    flex: 0.15,
+    justifyContent: 'center',
+  },
+  bottomContainer: {
+    flex: 0.15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
 
