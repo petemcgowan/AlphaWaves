@@ -1,0 +1,73 @@
+.container {
+  flex: 1;
+}
+
+.scrollView {
+  flex: 0.55;
+  padding-top: 20px;
+}
+
+.imageBox {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(30vh + 10px);
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  font-size: 50px;
+  color: #888;
+  margin: 5px;
+}
+
+.activeDot {
+  font-size: 50px;
+  color: #fff;
+  margin: 5px;
+}
+
+.button {
+  position: absolute;
+  bottom: 50px;
+  background-color: rgb(44, 207, 157);
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 3.84px rgba(0, 0, 0, 0.25);
+}
+
+.buttonText {
+  color: #fff;
+  font-size: 18px;
+}
+
+.link {
+  position: absolute;
+  bottom: 20px;
+}
+
+.linkText {
+  color: rgb(44, 207, 157);
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.buttonContainer {
+  flex: 0.15;
+  justify-content: center;
+}
+
+.bottomContainer {
+  flex: 0.15;
+  justify-content: center;
+  align-items: center;
+}
