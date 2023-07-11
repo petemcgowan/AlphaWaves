@@ -16,9 +16,9 @@ export default function CentralNavigation() {
           headerShown: false,
         }}
       >
-        {!hasSeenIntro && (
+        {/* {!hasSeenIntro && (
           <AppStack.Screen name="Onboarding" component={OnboardingDeck} />
-        )}
+        )} */}
         <AppStack.Screen name="RainSlider" component={RainSlider} />
       </AppStack.Navigator>
     </NavigationContainer>
