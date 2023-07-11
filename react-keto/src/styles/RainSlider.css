@@ -1,0 +1,91 @@
+.container {
+  flex: 1;
+  background-color: rgb(0, 0, 0);
+  justify-content: center;
+  align-items: center;
+}
+
+.timerCountdown {
+  flex-basis: 20%;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 20%; /* Adjusted according to the actual size of timerControls */
+  right: 0;
+}
+
+.timerControls {
+  flex-basis: 18%;
+  margin-bottom: 15px;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.scrollView {
+  height: calc(100vh * 0.7);
+  display: flex;
+  flex-direction: row;
+}
+
+.backgroundVideo {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: stretch;
+  bottom: 0;
+  right: 0;
+}
+
+.powerControls {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin-right: calc(100vw * 0.2);
+  margin-left: calc(100vw * 0.2);
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 1px 1px #ccc, 0 1px 1.34px #ccc;
+  elevation: 3;
+}
+
+.videoContainer {
+  width: calc(100vw - 1px);
+  height: 100vh;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+}
+
+.powerIcon {
+  opacity: 0.85;
+  padding-top: 30px;
+  height: 100%;
+  border-radius: 70px;
+}
+
+.activePowerIcon {
+  color: rgba(11, 57, 84, 0.75);
+}
+
+.inactivePowerIcon {
+  color: rgba(134, 168, 115, 0.75);
+}
+
+.slickContainer {
+  padding: 40px;
+  background: #419be0;
+}
+
+.slick-slide img {
+  margin: auto;
+}
