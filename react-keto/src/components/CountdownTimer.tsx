@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/CountdownTimer.css'
 
 interface CountdownTimerProps {
@@ -6,54 +6,45 @@ interface CountdownTimerProps {
   minutes: number
   seconds: number
   togglePlayback: () => void
-  setTimerVisible: (timerVisible: boolean) => void
   timerControlsFontColor: string
+  tsModalVisible: boolean
 }
-
-export type ChangeHandler = (value: {
-  hours: number
-  minutes: number
-  seconds: number
-}) => void
 
 const CountdownTimer: React.FC<CountdownTimerProps> = ({
   hours,
   minutes,
   seconds,
   togglePlayback,
-  setTimerVisible,
   timerControlsFontColor,
+  tsModalVisible,
 }) => {
-  const countDownInSecondsLocal = hours * 60 * 60 + minutes * 60 + seconds
+  const initialCount = hours * 3600 + minutes * 60 + seconds
+  const [count, setCount] = useState(initialCount)
+
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      setCount((currentCount) => currentCount - 1)
+    }, 1000)
+
+    return () => clearInterval(timerId)
+  }, [])
+
+  useEffect(() => {
+    if (count === 0) {
+      togglePlayback()
+    }
+  }, [count])
 
   const formatRemainingTime = (countDownInSeconds: number) => {
-    if (countDownInSecondsLocal === countDownInSeconds) {
-      return // no need to reformat
-    }
+    const hours = Math.floor(countDownInSeconds / 3600)
+    const minutes = Math.floor((countDownInSeconds % 3600) / 60)
+    const seconds = countDownInSeconds % 60
 
-    if (countDownInSeconds === 0) {
-      return '00:00'
-    }
+    const hoursStr = hours.toString().padStart(2, '0')
+    const minutesStr = minutes.toString().padStart(2, '0')
+    const secondsStr = seconds.toString().padStart(2, '0')
 
-    const hoursMethod2 = Math.floor(countDownInSeconds / 3600)
-    const minutesMethod2 = Math.floor((countDownInSeconds % 3600) / 60)
-    const secondsMethod2 = countDownInSeconds % 60
-
-    let secondString = String(secondsMethod2)
-    if (secondsMethod2 < 10) {
-      secondString = `0${secondsMethod2}`
-    } else {
-      secondString = String(secondsMethod2)
-    }
-    let minuteString = String(minutesMethod2)
-    if (minutesMethod2 < 10) {
-      minuteString = `0${minutesMethod2}`
-    } else {
-      minuteString = String(minutesMethod2)
-    }
-
-    // return `${minutes}:${seconds}`;
-    return `${hoursMethod2}:${minuteString}:${secondString}`
+    return `${hoursStr}:${minutesStr}:${secondsStr}`
   }
 
   return (
@@ -61,7 +52,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
       <div className="timer-wrapper">
         <div className="timer">
           <p className="timer-text" style={{ color: timerControlsFontColor }}>
-            {formatRemainingTime(countDownInSecondsLocal)}
+            {formatRemainingTime(count)}
           </p>
         </div>
       </div>
