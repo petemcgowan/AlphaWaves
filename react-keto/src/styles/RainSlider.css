@@ -1,5 +1,5 @@
 .container {
-  flex: 1;
+  position: relative;
   background-color: rgb(0, 0, 0);
   justify-content: center;
   align-items: center;
@@ -8,12 +8,20 @@
 .timerCountdown {
   flex-basis: 20%;
   margin-bottom: 15px;
+  width: 100px;
+  height: 100px;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 0;
-  bottom: 20%; /* Adjusted according to the actual size of timerControls */
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timerControlButton {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .timerControls {
@@ -22,15 +30,17 @@
   justify-content: flex-end;
   align-items: center;
   position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .scrollView {
-  height: calc(100vh * 0.7);
-  display: flex;
-  flex-direction: row;
+  flex: 0.55;
+  padding-top: 20px;
 }
 
 .backgroundVideo {
@@ -45,20 +55,18 @@
 
 .powerControls {
   position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  margin-right: calc(100vw * 0.2);
-  margin-left: calc(100vw * 0.2);
-  justify-content: flex-start;
-  align-items: center;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* justify-content: flex-start;
+  align-items: center; */
   box-shadow: 0 1px 1px #ccc, 0 1px 1.34px #ccc;
   elevation: 3;
 }
 
 .videoContainer {
   width: calc(100vw - 1px);
-  height: 100vh;
+  height: calc(100vh - 1px);
 }
 
 .video {
@@ -70,7 +78,10 @@
   opacity: 0.85;
   padding-top: 30px;
   height: 100%;
-  border-radius: 70px;
+  background: none;
+  border: none;
+  padding: 0;
+  /* border-radius: 70px; */
 }
 
 .activePowerIcon {
@@ -82,10 +93,13 @@
 }
 
 .slickContainer {
-  padding: 40px;
+  position: relative;
+  padding: 2vw;
   background: #419be0;
 }
 
 .slick-slide img {
   margin: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
