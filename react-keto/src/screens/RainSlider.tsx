@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import '../styles/RainSlider.css'
-import { FaWater } from 'react-icons/fa'
+import { FaTint } from 'react-icons/fa'
 
 import rainSounds from '../model/data'
 import TimerControls from '../components/TimerControls'
@@ -9,17 +9,15 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-// import Slide1 from './Slide1'
-// import Slide2 from './Slide2'
-// import Slide3 from './Slide3'
-
-// const slides = [Slide1, Slide2, Slide3]
+import VideoSlide from './VideoSlide'
 
 const RainSlider = () => {
-  // const scrollX = useRef(new Animated.Value(0)).current
   const [songIndex, setSongIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [timerVisible, setTimerVisible] = useState(false)
+  const [tsModalVisible, setTsModalVisible] = useState(false)
+  const [count, setCount] = useState(0)
+
   const [activeSlide, setActiveSlide] = useState(0)
   const slideColors = ['rgb(38, 27, 21)', 'rgb(25, 26, 29)', 'rgb(9, 21, 39)']
   const [backgroundColor, setBackgroundColor] = useState('#000')
@@ -28,122 +26,72 @@ const RainSlider = () => {
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
   const [intentionalVideoPlay, setIntentionalVideoPlay] = useState(true)
+  const videoRef = useRef(null)
+
+  const handleSlideChange = (currentSlide) => {
+    console.log('handleSlideChange, currentSlide:' + currentSlide)
+    setSongIndex(currentSlide)
+  }
+
   var settings = {
     dots: true,
+    afterChange: handleSlideChange,
   }
+
   // rainSounds[songIndex].playingSound.setVolume(0.9)
   // rainSounds[songIndex].playingSound.setNumberOfLoops(-1)
 
-  const onScroll = (event) => {
-    const slide = Math.ceil(event.target.scrollLeft / event.target.offsetWidth)
-    if (slide !== activeSlide) {
-      setActiveSlide(slide)
-
-      console.log('activeSlide:' + activeSlide + ', slide:' + slide)
-      console.log('slides.length:' + slides.length)
-      if (slide > slides.length - 1) {
-        console.log('Slides end reached')
+  useEffect(() => {
+    if (videoRef.current) {
+      if (playing) {
+        console.log('set video to play')
+        videoRef.current.play()
       } else {
-        setBackgroundColor(slideColors[slide])
-        console.log(slideColors[slide])
+        console.log('set video to pause')
+        videoRef.current.pause()
       }
     }
-  }
+  }, [playing])
 
   const togglePlayback = () => {
-    if (rainSounds[songIndex].playingSound._playing) {
+    if (rainSounds[songIndex].playingSound.playing()) {
       rainSounds[songIndex].playingSound.stop()
-      setPlaying(!playing)
+      setPlaying((prevPlaying) => !prevPlaying)
       if (timerVisible) setTimerVisible(false)
     } else {
-      setPlaying(true)
-      rainSounds[songIndex].playingSound.play((success) => {
-        if (success) {
-          console.log('successfully finished playing')
-        } else {
-          console.log('playback failed due to audio decoding errors')
-        }
-      })
+      setPlaying((prevPlaying) => !prevPlaying)
+      rainSounds[songIndex].playingSound.play()
     }
   }
 
   return (
     <div className="container">
-      <div>
-        <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
-      </div>
       <div className="slickContainer">
         <Slider {...settings}>
-          <div>
-            <img src="http://placekitten.com/g/400/200" />
-          </div>
-          <div>
-            <img src="http://placekitten.com/g/400/200" />
-          </div>
-          <div>
-            <img src="http://placekitten.com/g/400/200" />
-          </div>
-          <div>
-            <img src="http://placekitten.com/g/400/200" />
-          </div>
+          {rainSounds.map((moog, index) => (
+            <VideoSlide
+              key={index}
+              videoBackground={moog.videoBackground}
+              playing={playing}
+              intentionalVideoPlay={intentionalVideoPlay}
+              setIntentionalVideoPlay={setIntentionalVideoPlay}
+            />
+          ))}
         </Slider>
       </div>
-      {/* <div
-        className="scrollView"
-        onScroll={onScroll}
-        onWheel={onScroll}
-        onTouchMove={onScroll}
-      >
-        {slides.map((SlideComponent, index) => (
-          <SlideComponent key={index} />
-        ))}
-      </div> */}
 
-      {/* {rainSounds.map((video, index) => (
-        <div className="videoContainer" key={index}>
-          <video
-            src={video.videoBackground}
-            className="video"
-            muted={true}
-            volume={0.5}
-            loop={true}
-            autoPlay={playing && intentionalVideoPlay}
-            controls={false}
-          />
-        </div>
-      ))} */}
-
-      {/* <div className="powerControls">
+      <div className="powerControls">
         <button className="powerIcon" onClick={() => togglePlayback()}>
-          <FaWater
+          <FaTint
             size={250}
             className={`powerIcon ${
               playing ? 'activePowerIcon' : 'inactivePowerIcon'
             }`}
           />
         </button>
-      </div> */}
+      </div>
 
-      {/* <div className="timerCountdown">
+      <div className="timerCountdownContainer">
         {timerVisible ? (
           <div className="timerCountdown">
             <CountdownTimer
@@ -160,10 +108,13 @@ const RainSlider = () => {
         ) : (
           <div className="timerCountdown"></div>
         )}
-      </div> */}
-      {/*<div className="timerControls">
-         <TimerControls
+      </div>
+
+      <div className="timerControls">
+        <TimerControls
           setTimerVisible={setTimerVisible}
+          tsModalVisible={tsModalVisible}
+          setTsModalVisible={setTsModalVisible}
           hours={hours}
           setHours={setHours}
           minutes={minutes}
@@ -180,7 +131,7 @@ const RainSlider = () => {
           timerDialogFontColor={rainSounds[songIndex].timerDialogFontColor}
           songIndex={songIndex}
         />
-      </div>*/}
+      </div>
     </div>
   )
 }

@@ -25,7 +25,7 @@ interface RainSound {
   timerDialogBackgroundColor: string
   timerDialogFontColor: string
   timerControlsFontColor: string
-  // playingSound: Howl
+  playingSound: Howl
   id: string
 }
 
@@ -37,13 +37,15 @@ const rainSounds: RainSound[] = [
     timerDialogBackgroundColor: '#136a53',
     timerDialogFontColor: '#d5e5ea',
     timerControlsFontColor: '#d5e5ea',
-    // playingSound: new Howl({
-    //   src: ['../assets/sounds/cozy_cabin_porch_with_heavy_rainstorm_trim.mp3'],
-    //   html5: true,
-    //   autoplay: false,
-    //   loop: true,
-    //   volume: 0.9,
-    // }),
+    playingSound: new Howl({
+      src: [
+        '../../assets/sounds/cozy_cabin_porch_with_heavy_rainstorm_trim.mp3',
+      ],
+      html5: true,
+      autoplay: false,
+      loop: true,
+      volume: 0.9,
+    }),
     id: '1',
   },
   {
@@ -53,13 +55,13 @@ const rainSounds: RainSound[] = [
     timerDialogBackgroundColor: '#4d94ca',
     timerDialogFontColor: '#afb7ad',
     timerControlsFontColor: '#afb7ad',
-    // playingSound: new Howl({
-    //   src: ['../assets/sounds/night_rain_on_a_car_trim.mp3'],
-    //   html5: true,
-    //   autoplay: false,
-    //   loop: true,
-    //   volume: 0.9,
-    // }),
+    playingSound: new Howl({
+      src: ['../../assets/sounds/night_rain_on_a_car_trim.mp3'],
+      html5: true,
+      autoplay: false,
+      loop: true,
+      volume: 0.9,
+    }),
     id: '2',
   },
   {
@@ -69,13 +71,13 @@ const rainSounds: RainSound[] = [
     timerDialogBackgroundColor: '#47819d',
     timerDialogFontColor: '#faaf32',
     timerControlsFontColor: '#faaf32',
-    // playingSound: new Howl({
-    //   src: ['../assets/sounds/heavy1_rain_on_window_on_the_train.mp3'],
-    //   html5: true,
-    //   autoplay: false,
-    //   loop: true,
-    //   volume: 0.9,
-    // }),
+    playingSound: new Howl({
+      src: ['../../assets/sounds/heavy1_rain_on_window_on_the_train.mp3'],
+      html5: true,
+      autoplay: false,
+      loop: true,
+      volume: 0.9,
+    }),
     id: '3',
   },
   {
@@ -85,13 +87,13 @@ const rainSounds: RainSound[] = [
     timerDialogBackgroundColor: '#2c5056',
     timerDialogFontColor: '#e4af91',
     timerControlsFontColor: '#e4af91',
-    // playingSound: new Howl({
-    //   src: ['../assets/sounds/rain_hitting_a_campervan_roof_window.mp3'],
-    //   html5: true,
-    //   autoplay: false,
-    //   loop: true,
-    //   volume: 0.9,
-    // }),
+    playingSound: new Howl({
+      src: ['../../assets/sounds/rain_hitting_a_campervan_roof_window.mp3'],
+      html5: true,
+      autoplay: false,
+      loop: true,
+      volume: 0.9,
+    }),
     id: '4',
   },
   {
@@ -101,13 +103,13 @@ const rainSounds: RainSound[] = [
     timerDialogBackgroundColor: '#2c5056',
     timerDialogFontColor: '#e4af91',
     timerControlsFontColor: '#e4af91',
-    // playingSound: new Howl({
-    //   src: ['../assets/sounds/gentle_waves_on_a_small_white_rock_beach.mp3'],
-    //   html5: true,
-    //   autoplay: false,
-    //   loop: true,
-    //   volume: 0.9,
-    // }),
+    playingSound: new Howl({
+      src: ['../../assets/sounds/gentle_waves_on_a_small_white_rock_beach.mp3'],
+      html5: true,
+      autoplay: false,
+      loop: true,
+      volume: 0.9,
+    }),
     id: '5',
   },
 ]
