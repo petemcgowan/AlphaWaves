@@ -1,29 +1,19 @@
 import React, { useState } from 'react'
-import { FaVideo, FaTimes } from 'react-icons/fa'
-import TimePickerModal from './TimePickerModal'
+import { FaClock, FaVideo } from 'react-icons/fa'
 import rainSounds from '../model/data'
-import Utils from '../utils/Utils'
-import '../styles/CountdownTimer.css'
-
-const secondOptions = Utils.selectionDropDownRange(0, 59).map(
-  (second) => second.value
-)
-
-const minuteOptions = Utils.selectionDropDownRange(0, 59).map(
-  (minute) => minute.value
-)
-const hourOptions = Utils.selectionDropDownRange(0, 23).map(
-  (hour) => hour.value
-)
+import '../styles/TimerControls.css'
+import TouchstripDialog from './TouchstripDialog'
 
 interface TimerControlsProps {
-  setTimerVisible: (timerVisible: boolean) => void
+  setTimerVisible: React.Dispatch<React.SetStateAction<boolean>>
+  tsModalVisible: boolean
+  setTsModalVisible: (tsModalVisible: boolean) => void
   hours: number
-  setHours: (hours: number) => void
+  setHours: React.Dispatch<React.SetStateAction<number>>
   minutes: number
-  setMinutes: (minutes: number) => void
+  setMinutes: React.Dispatch<React.SetStateAction<number>>
   seconds: number
-  setSeconds: (seconds: number) => void
+  setSeconds: React.Dispatch<React.SetStateAction<number>>
   playing: boolean
   togglePlayback: () => void
   intentionalVideoPlay: boolean
@@ -41,6 +31,8 @@ export type ChangeHandler = (value: {
 
 export default function TimerControls({
   setTimerVisible,
+  tsModalVisible,
+  setTsModalVisible,
   hours,
   setHours,
   minutes,
@@ -55,40 +47,53 @@ export default function TimerControls({
   timerDialogFontColor,
   songIndex,
 }: TimerControlsProps) {
-  const [modalVisible, setModalVisible] = useState(false)
+  const handleConfirm = () => {
+    console.log('handleConfirm, Selected Hours:', hours)
+    console.log('handleConfirm, Selected Minutes:', minutes)
+    console.log('handleConfirm, Selected Seconds:', seconds)
+    setTsModalVisible(false)
 
-  const handleChange: ChangeHandler = (value: {
-    hours: number
-    minutes: number
-    seconds: number
-  }) => {
-    setHours(value.hours)
-    setMinutes(value.minutes)
-    setSeconds(value.seconds)
+    setTimerVisible(true)
+    if (!playing) {
+      togglePlayback()
+    }
+  }
+
+  const handleTsCloseModal = () => {
+    setTsModalVisible(false)
+  }
+
+  const clickTimerButton = () => {
+    setTsModalVisible(true)
   }
 
   return (
     <div>
-      <div>
-        {/* <TimePickerModal
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-          timerDialogBackgroundColor={timerDialogBackgroundColor}
-          timerDialogFontColor={timerDialogFontColor}
-          hours={hours}
-          minutes={minutes}
-          seconds={seconds}
-          // setHours={setHours}
-          // setMinutes={setMinutes}
-          // setSeconds={setSeconds}
-          handleChange={handleChange}
-          // hourOptions={hourOptions}
-          // minuteOptions={minuteOptions}
-          // secondOptions={secondOptions}
-          playing={playing}
-          togglePlayback={togglePlayback}
-          setTimerVisible={setTimerVisible}
-        /> */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '10vw',
+          height: '10vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {tsModalVisible && (
+          <TouchstripDialog
+            onCancel={handleTsCloseModal}
+            handleConfirm={handleConfirm}
+            selectedHours={hours}
+            setSelectedHours={setHours}
+            selectedMinutes={minutes}
+            setSelectedMinutes={setMinutes}
+            selectedSeconds={seconds}
+            setSelectedSeconds={setSeconds}
+          />
+        )}
       </div>
       <div className="bottomContainer">
         <div className="pagination">
@@ -104,16 +109,22 @@ export default function TimerControls({
         <div className="bottomControls">
           <div style={{ width: window.innerWidth * 0.1 }}></div>
           <div style={{ width: window.innerWidth * 0.4, alignItems: 'center' }}>
-            <button onClick={() => setModalVisible(true)}>
-              <FaTimes size={90} color="#777777" />
+            <button className="timerControlButton" onClick={clickTimerButton}>
+              <FaClock
+                size={90}
+                color="#777777"
+                className="timerControlButton"
+              />
             </button>
           </div>
           <div style={{ width: window.innerWidth * 0.4, alignItems: 'center' }}>
             <button
+              className="timerControlButton"
               onClick={() => setIntentionalVideoPlay(!intentionalVideoPlay)}
             >
               <FaVideo
                 size={90}
+                className="timerControlButton"
                 color={
                   intentionalVideoPlay
                     ? 'rgba(11, 57, 84, 0.75)'

@@ -1,14 +1,12 @@
-/* styles.css */
-
-/* Bottom Container */
 .bottomContainer {
   border-top-color: #393e46;
   border-top-width: 1px;
   width: 100%;
   align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Bottom Controls */
 .bottomControls {
   display: flex;
   flex-direction: row;
@@ -16,54 +14,33 @@
   width: 80%;
 }
 
-/* Dots */
+.timerControlButton {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
 .dot {
+  display: inline-block;
   font-size: 35px;
   color: #888;
   margin: 3px;
+  margin: 0 5px;
 }
 
 .activeDot {
+  display: inline-block;
   font-size: 35px;
   color: #fff;
 }
 
-/* Pagination */
 .pagination {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center;*/
 }
 
-/* Button */
-.button {
-  width: 50%;
-  border-radius: 10px;
-  padding: 10px;
-  elevation: 2;
-}
-
-/* Modal View */
-.modalView {
-  margin-top: 80px;
-  border-radius: 20px;
-  padding: 20px;
-  align-items: center;
-  box-shadow: 2px 2px 0px #000;
-  shadow-opacity: 0.25;
-  shadow-radius: 4px;
-  elevation: 5;
-}
-
-/* Modal Bottom Buttons */
-.modalBottomButtons {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-/* Text Style */
 .textStyle {
   color: #777777;
   text-align: center;
