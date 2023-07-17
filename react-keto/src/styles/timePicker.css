@@ -1,0 +1,9 @@
+/* @import 'react-mobile-datepicker/dist/index.css'; */
+@import 'react-mobile-datepicker/lib/index.css';
+
+.pickerContainer {
+  /* flex: 0.5; */
+  width: 90vw;
+  height: 60vh;
+  align-self: center;
+}
