@@ -11,17 +11,14 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		222A1B92BBD8E791B6A7C396 /* libPods-RainNoiseApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B7EBA1C8BF0BD2FC279611 /* libPods-RainNoiseApp.a */; };
 		2C4EB5102A240E9E00696EB6 /* night_rain_on_a_car_trim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB5082A240E9E00696EB6 /* night_rain_on_a_car_trim.mp3 */; };
-		2C4EB5112A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB5092A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3 */; };
-		2C4EB5122A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50A2A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3 */; };
 		2C4EB5132A240E9E00696EB6 /* cozy_cabin_porch_with_heavy_rainstorm_trim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50B2A240E9E00696EB6 /* cozy_cabin_porch_with_heavy_rainstorm_trim.mp3 */; };
 		2C4EB5142A240E9E00696EB6 /* rain_hitting_a_campervan_roof_window.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50C2A240E9E00696EB6 /* rain_hitting_a_campervan_roof_window.mp3 */; };
 		2C4EB5152A240E9E00696EB6 /* gentle_waves_on_a_small_white_rock_beach.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50D2A240E9E00696EB6 /* gentle_waves_on_a_small_white_rock_beach.mp3 */; };
-		2C4EB5162A240E9E00696EB6 /* heavy1_rain_on_window_on_the_train.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50E2A240E9E00696EB6 /* heavy1_rain_on_window_on_the_train.mp3 */; };
-		2C4EB5172A240E9E00696EB6 /* sleep_in_the_tent_on_a_rainy_day_trim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C4EB50F2A240E9E00696EB6 /* sleep_in_the_tent_on_a_rainy_day_trim.mp3 */; };
+		2C6F12A92A81B7740086C348 /* heavy1_rain_on_window_on_the_train.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C6F12A82A81B7740086C348 /* heavy1_rain_on_window_on_the_train.mp3 */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F2DD73E7655F6266235EE7E7 /* libPods-RainNoiseApp-RainNoiseAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A61E56009FF9E1DE113E01DE /* libPods-RainNoiseApp-RainNoiseAppTests.a */; };
-		F6D913375E3A43C91C7AC874 /* libPods-RainNoiseApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E42232A5020C4D38A0DA6936 /* libPods-RainNoiseApp.a */; };
+		942597A48B1E44666522F967 /* libPods-RainNoiseApp-RainNoiseAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A95BF32296F0FFDBB14307CC /* libPods-RainNoiseApp-RainNoiseAppTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,20 +43,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RainNoiseApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RainNoiseApp/main.m; sourceTree = "<group>"; };
 		2C4EB5082A240E9E00696EB6 /* night_rain_on_a_car_trim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = night_rain_on_a_car_trim.mp3; path = ../assets/sounds/night_rain_on_a_car_trim.mp3; sourceTree = "<group>"; };
-		2C4EB5092A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3; path = ../assets/sounds/relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3; sourceTree = "<group>"; };
-		2C4EB50A2A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3; path = ../assets/sounds/relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3; sourceTree = "<group>"; };
 		2C4EB50B2A240E9E00696EB6 /* cozy_cabin_porch_with_heavy_rainstorm_trim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cozy_cabin_porch_with_heavy_rainstorm_trim.mp3; path = ../assets/sounds/cozy_cabin_porch_with_heavy_rainstorm_trim.mp3; sourceTree = "<group>"; };
 		2C4EB50C2A240E9E00696EB6 /* rain_hitting_a_campervan_roof_window.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = rain_hitting_a_campervan_roof_window.mp3; path = ../assets/sounds/rain_hitting_a_campervan_roof_window.mp3; sourceTree = "<group>"; };
 		2C4EB50D2A240E9E00696EB6 /* gentle_waves_on_a_small_white_rock_beach.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gentle_waves_on_a_small_white_rock_beach.mp3; path = ../assets/sounds/gentle_waves_on_a_small_white_rock_beach.mp3; sourceTree = "<group>"; };
-		2C4EB50E2A240E9E00696EB6 /* heavy1_rain_on_window_on_the_train.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = heavy1_rain_on_window_on_the_train.mp3; path = ../assets/sounds/heavy1_rain_on_window_on_the_train.mp3; sourceTree = "<group>"; };
-		2C4EB50F2A240E9E00696EB6 /* sleep_in_the_tent_on_a_rainy_day_trim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sleep_in_the_tent_on_a_rainy_day_trim.mp3; path = ../assets/sounds/sleep_in_the_tent_on_a_rainy_day_trim.mp3; sourceTree = "<group>"; };
-		610228513B9B79F8CE9AFA08 /* Pods-RainNoiseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp.debug.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp.debug.xcconfig"; sourceTree = "<group>"; };
-		784A600F5575DED3FEDB25CA /* Pods-RainNoiseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp.release.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp.release.xcconfig"; sourceTree = "<group>"; };
+		2C6F12A82A81B7740086C348 /* heavy1_rain_on_window_on_the_train.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = heavy1_rain_on_window_on_the_train.mp3; path = ../assets/sounds/heavy1_rain_on_window_on_the_train.mp3; sourceTree = "<group>"; };
+		3A2E21BD5ECE385A9AC7EB34 /* Pods-RainNoiseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp.debug.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RainNoiseApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A61E56009FF9E1DE113E01DE /* libPods-RainNoiseApp-RainNoiseAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RainNoiseApp-RainNoiseAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A69E18E1E75F59C3C572B4D7 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		C3508D19F6D6FF4CC8D84ECA /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E42232A5020C4D38A0DA6936 /* libPods-RainNoiseApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RainNoiseApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A106D902E1A19E329B5941E9 /* Pods-RainNoiseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp.release.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp.release.xcconfig"; sourceTree = "<group>"; };
+		A5F172389E3F86E1B46CAFAF /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A95BF32296F0FFDBB14307CC /* libPods-RainNoiseApp-RainNoiseAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RainNoiseApp-RainNoiseAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4B7EBA1C8BF0BD2FC279611 /* libPods-RainNoiseApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RainNoiseApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD0DDE354C371BCFC7B1969 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig"; path = "Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -68,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2DD73E7655F6266235EE7E7 /* libPods-RainNoiseApp-RainNoiseAppTests.a in Frameworks */,
+				942597A48B1E44666522F967 /* libPods-RainNoiseApp-RainNoiseAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6D913375E3A43C91C7AC874 /* libPods-RainNoiseApp.a in Frameworks */,
+				222A1B92BBD8E791B6A7C396 /* libPods-RainNoiseApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,8 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				E42232A5020C4D38A0DA6936 /* libPods-RainNoiseApp.a */,
-				A61E56009FF9E1DE113E01DE /* libPods-RainNoiseApp-RainNoiseAppTests.a */,
+				C4B7EBA1C8BF0BD2FC279611 /* libPods-RainNoiseApp.a */,
+				A95BF32296F0FFDBB14307CC /* libPods-RainNoiseApp-RainNoiseAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -143,12 +137,9 @@
 			children = (
 				2C4EB50B2A240E9E00696EB6 /* cozy_cabin_porch_with_heavy_rainstorm_trim.mp3 */,
 				2C4EB50D2A240E9E00696EB6 /* gentle_waves_on_a_small_white_rock_beach.mp3 */,
-				2C4EB50E2A240E9E00696EB6 /* heavy1_rain_on_window_on_the_train.mp3 */,
+				2C6F12A82A81B7740086C348 /* heavy1_rain_on_window_on_the_train.mp3 */,
 				2C4EB5082A240E9E00696EB6 /* night_rain_on_a_car_trim.mp3 */,
 				2C4EB50C2A240E9E00696EB6 /* rain_hitting_a_campervan_roof_window.mp3 */,
-				2C4EB5092A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3 */,
-				2C4EB50A2A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3 */,
-				2C4EB50F2A240E9E00696EB6 /* sleep_in_the_tent_on_a_rainy_day_trim.mp3 */,
 				13B07FAE1A68108700A75B9A /* RainNoiseApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* RainNoiseAppTests */,
@@ -174,10 +165,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				610228513B9B79F8CE9AFA08 /* Pods-RainNoiseApp.debug.xcconfig */,
-				784A600F5575DED3FEDB25CA /* Pods-RainNoiseApp.release.xcconfig */,
-				C3508D19F6D6FF4CC8D84ECA /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */,
-				A69E18E1E75F59C3C572B4D7 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */,
+				3A2E21BD5ECE385A9AC7EB34 /* Pods-RainNoiseApp.debug.xcconfig */,
+				A106D902E1A19E329B5941E9 /* Pods-RainNoiseApp.release.xcconfig */,
+				A5F172389E3F86E1B46CAFAF /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */,
+				EBD0DDE354C371BCFC7B1969 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -189,12 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "RainNoiseAppTests" */;
 			buildPhases = (
-				7E686DCF78C47FAAECF53619 /* [CP] Check Pods Manifest.lock */,
+				958DBBDEE7BB696A285C7E62 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				5AAD55B6D64311631ED9A200 /* [CP] Embed Pods Frameworks */,
-				832873911F9A45BB5CAD43E5 /* [CP] Copy Pods Resources */,
+				71FEC95A077293FDA21E9667 /* [CP] Embed Pods Frameworks */,
+				576F0DE5FEEEE89128C41162 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,14 +201,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RainNoiseApp" */;
 			buildPhases = (
-				AC2C65617E31329326F9B6D1 /* [CP] Check Pods Manifest.lock */,
+				27182D3A688320DE04131232 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				4AA20F654E1DCAC083CCFD96 /* [CP] Embed Pods Frameworks */,
-				8C051888E3AE391682A58FBA /* [CP] Copy Pods Resources */,
+				B4434AD85CC1580B7B00F831 /* [CP] Embed Pods Frameworks */,
+				2535A3935546388873E7AFD9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,14 +268,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4EB5142A240E9E00696EB6 /* rain_hitting_a_campervan_roof_window.mp3 in Resources */,
-				2C4EB5122A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim2.mp3 in Resources */,
-				2C4EB5162A240E9E00696EB6 /* heavy1_rain_on_window_on_the_train.mp3 in Resources */,
 				2C4EB5152A240E9E00696EB6 /* gentle_waves_on_a_small_white_rock_beach.mp3 in Resources */,
-				2C4EB5112A240E9E00696EB6 /* relaxing_sounds_of_light_rain_falling_on_the_car_trim.mp3 in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				2C4EB5102A240E9E00696EB6 /* night_rain_on_a_car_trim.mp3 in Resources */,
 				2C4EB5132A240E9E00696EB6 /* cozy_cabin_porch_with_heavy_rainstorm_trim.mp3 in Resources */,
-				2C4EB5172A240E9E00696EB6 /* sleep_in_the_tent_on_a_rainy_day_trim.mp3 in Resources */,
+				2C6F12A92A81B7740086C348 /* heavy1_rain_on_window_on_the_train.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,24 +296,63 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		4AA20F654E1DCAC083CCFD96 /* [CP] Embed Pods Frameworks */ = {
+		2535A3935546388873E7AFD9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5AAD55B6D64311631ED9A200 /* [CP] Embed Pods Frameworks */ = {
+		27182D3A688320DE04131232 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RainNoiseApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		576F0DE5FEEEE89128C41162 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71FEC95A077293FDA21E9667 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -342,7 +369,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7E686DCF78C47FAAECF53619 /* [CP] Check Pods Manifest.lock */ = {
+		958DBBDEE7BB696A285C7E62 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,60 +391,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		832873911F9A45BB5CAD43E5 /* [CP] Copy Pods Resources */ = {
+		B4434AD85CC1580B7B00F831 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp-RainNoiseAppTests/Pods-RainNoiseApp-RainNoiseAppTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C051888E3AE391682A58FBA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC2C65617E31329326F9B6D1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RainNoiseApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RainNoiseApp/Pods-RainNoiseApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -472,7 +460,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3508D19F6D6FF4CC8D84ECA /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */;
+			baseConfigurationReference = A5F172389E3F86E1B46CAFAF /* Pods-RainNoiseApp-RainNoiseAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -499,7 +487,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A69E18E1E75F59C3C572B4D7 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */;
+			baseConfigurationReference = EBD0DDE354C371BCFC7B1969 /* Pods-RainNoiseApp-RainNoiseAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -523,11 +511,12 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 610228513B9B79F8CE9AFA08 /* Pods-RainNoiseApp.debug.xcconfig */;
+			baseConfigurationReference = 3A2E21BD5ECE385A9AC7EB34 /* Pods-RainNoiseApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P42X2655GH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RainNoiseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -549,11 +538,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 784A600F5575DED3FEDB25CA /* Pods-RainNoiseApp.release.xcconfig */;
+			baseConfigurationReference = A106D902E1A19E329B5941E9 /* Pods-RainNoiseApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P42X2655GH;
 				INFOPLIST_FILE = RainNoiseApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
