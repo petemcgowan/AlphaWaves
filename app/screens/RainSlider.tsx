@@ -9,7 +9,7 @@ import {
   NativeModules,
 } from 'react-native'
 import rainSounds from '../model/data'
-import { useNavigation } from '@react-navigation/native'
+// import { useNavigation } from '@react-navigation/native'
 import TimerControls from '../components/TimerControls'
 import CountdownTimer from '../components/CountdownTimer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -20,12 +20,21 @@ const { width, height } = Dimensions.get('window')
 const RainSlider = () => {
   const scrollX = useRef(new Animated.Value(0)).current
   const [songIndex, setSongIndex] = useState(0)
-  const [playing, setPlaying] = useState(false)
+  // const [playing, setPlaying] = useState(false)
+
   const [timerVisible, setTimerVisible] = useState(false)
 
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
+  const [soundsPlaying, setSoundsPlaying] = useState([
+    { playing: false },
+    { playing: false },
+    { playing: false },
+    { playing: false },
+    { playing: false },
+  ])
+  console.log('soundsPlaying' + JSON.stringify(soundsPlaying))
   const [intentionalVideoPlay, setIntentionalVideoPlay] = useState(true)
 
   rainSounds[songIndex].playingSound.setVolume(0.9)
@@ -37,6 +46,7 @@ const RainSlider = () => {
         'cozy_cabin_porch_with_heavy_rainstorm_trim',
         'night_rain_on_a_car_trim',
         'heavy1_rain_on_window_on_the_train',
+        // 'relaxing_sounds_of_light_rain_falling_on_the_car_trim2',
         'rain_hitting_a_campervan_roof_window',
         'gentle_waves_on_a_small_white_rock_beach',
       ])
@@ -48,13 +58,17 @@ const RainSlider = () => {
       } else {
         if (index !== songIndex) {
           if (Platform.OS === 'android') {
-            console.log('useEffect, index !== songIndex, index:', index)
-            console.log('useEffect, songIndex:', songIndex)
             NativeModules.ExoPlayerModule.switchTrack(index)
+            if (soundsPlaying[songIndex].playing) {
+              updatePlayingStatus(false, songIndex) // set prev song to not play
+              updatePlayingStatus(true, index) // set new song to play
+            }
           }
 
           if (Platform.OS === 'ios') {
             if (rainSounds[songIndex].playingSound._playing) {
+              updatePlayingStatus(false, songIndex)
+              updatePlayingStatus(true, index)
               // if previous sound if playing, stop it
               rainSounds[songIndex].playingSound.stop()
               // play the newly selected sound
@@ -69,19 +83,23 @@ const RainSlider = () => {
     return () => {
       scrollX.removeAllListeners()
     }
-  }, [scrollX, songIndex, playing])
+  }, [scrollX, songIndex, soundsPlaying[songIndex].playing])
+
+  const updatePlayingStatus = (playingStatus: boolean, index: number) => {
+    const updatedSoundsPlaying = [...soundsPlaying]
+    updatedSoundsPlaying[index].playing = playingStatus
+    setSoundsPlaying(updatedSoundsPlaying)
+  }
 
   const togglePlayback = () => {
     if (Platform.OS === 'android') {
       NativeModules.ExoPlayerModule.isTrackPlaying((isPlaying: boolean) => {
         if (isPlaying) {
           NativeModules.ExoPlayerModule.pauseTrack()
-          setPlaying(false)
+          updatePlayingStatus(false, songIndex)
           if (timerVisible) setTimerVisible(false)
-          console.log('The track is playing')
         } else {
-          setPlaying(true)
-          console.log('The track is not playing')
+          updatePlayingStatus(true, songIndex)
           NativeModules.ExoPlayerModule.playTrack()
         }
       })
@@ -90,10 +108,11 @@ const RainSlider = () => {
     if (Platform.OS === 'ios') {
       if (rainSounds[songIndex].playingSound._playing) {
         rainSounds[songIndex].playingSound.stop()
-        setPlaying(!playing)
+        updatePlayingStatus(false, songIndex)
+
         if (timerVisible) setTimerVisible(false)
       } else {
-        setPlaying(true)
+        updatePlayingStatus(true, songIndex)
         rainSounds[songIndex].playingSound.play((success) => {
           if (success) {
             console.log('successfully finished playing')
@@ -112,7 +131,7 @@ const RainSlider = () => {
         pagingEnabled
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: true } // Set to false, adjust according to your needs
+          { useNativeDriver: true }
         )}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
@@ -129,7 +148,8 @@ const RainSlider = () => {
                 rate={0.6}
                 repeat={true}
                 // buffered={true}
-                paused={!playing || !intentionalVideoPlay}
+                // paused={!playing || !intentionalVideoPlay}
+                paused={!soundsPlaying[index].playing || !intentionalVideoPlay}
                 resizeMode="cover"
               />
             )}
@@ -143,8 +163,8 @@ const RainSlider = () => {
                 volume={0.5}
                 rate={0.6}
                 repeat={true}
-                // buffered={true}
-                paused={!playing || !intentionalVideoPlay}
+                // paused={!playing || !intentionalVideoPlay}
+                paused={!soundsPlaying[index].playing || !intentionalVideoPlay}
                 resizeMode="cover"
               />
             )}
@@ -161,7 +181,9 @@ const RainSlider = () => {
             size={250}
             style={styles.powerIcon}
             color={
-              playing ? 'rgba(11, 57, 84, 0.75)' : 'rgba(134, 168, 115, 0.75)'
+              soundsPlaying[songIndex].playing
+                ? 'rgba(11, 57, 84, 1)'
+                : 'rgba(191, 215, 234, 0.75)'
             }
           />
         </TouchableOpacity>
@@ -194,7 +216,8 @@ const RainSlider = () => {
           setMinutes={setMinutes}
           seconds={seconds}
           setSeconds={setSeconds}
-          playing={playing}
+          // playing={playing}
+          playing={soundsPlaying[songIndex].playing}
           togglePlayback={togglePlayback}
           intentionalVideoPlay={intentionalVideoPlay}
           setIntentionalVideoPlay={setIntentionalVideoPlay}
@@ -223,7 +246,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'absolute',
     left: 0,
-    bottom: '20%', // Adjusted according to the actual size of timerControls
+    bottom: '20%',
     right: 0,
   },
   timerControls: {
@@ -268,7 +291,8 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   videoContainer: {
-    width: width - 1,
+    // width: width - 1,
+    width: width,
     height: height,
   },
   video: {

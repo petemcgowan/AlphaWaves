@@ -5,7 +5,7 @@ import videoPosterPath1 from '../../assets/images/posters/rainInPorchOverlooking
 import videoPosterPath2 from '../../assets/images/posters/RainInACar540x960.jpg'
 import videoPosterPath3 from '../../assets/images/posters/HeavyRainOnWindowOnTheTrain.jpg'
 import videoPosterPath4 from '../../assets/images/posters/RainPouringDown.jpg'
-import videoPosterPath5 from '../../assets/images/posters/RainPouringDown.jpg'
+import videoPosterPath5 from '../../assets/images/posters/GentleWavesonaSmallWhiteRockBeach.jpg'
 
 const rainSounds = [
   {
@@ -20,7 +20,7 @@ const rainSounds = [
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load the ocean water sound', error)
+          console.log('failed to load the porch rainstorm sound', error)
           return
         }
       }
@@ -39,7 +39,7 @@ const rainSounds = [
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load the plane window sound', error)
+          console.log('failed to load the night rain car sound', error)
           return
         }
       }
@@ -50,15 +50,17 @@ const rainSounds = [
     videoBackground: require('../../assets/videos/HeavyRainOnWindowOnTheTrain.mp4'),
     videoPoster: require('../../assets/images/posters/HeavyRainOnWindowOnTheTrain.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath3).uri,
-    timerDialogBackgroundColor: '#47819d',
-    timerDialogFontColor: '#faaf32',
-    timerControlsFontColor: '#faaf32',
+    timerDialogBackgroundColor: 'rgb(38, 27, 21)',
+    timerDialogFontColor: '#fff',
+    timerControlsFontColor: '#fff',
+    // ['rgb(38, 27, 21)', 'rgb(25, 26, 29)', 'rgb(9, 21, 39)']
     playingSound: new Sound(
       'heavy1_rain_on_window_on_the_train.mp3',
+      // 'relaxing_sounds_of_light_rain_falling_on_the_car_trim2',
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load the night in Turkey sound', error)
+          console.log('failed to load the rain on a train sound', error)
           return
         }
       }
@@ -77,7 +79,7 @@ const rainSounds = [
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load the night waves sound', error)
+          console.log('failed to load the campervan roof sound', error)
           return
         }
       }
@@ -88,15 +90,15 @@ const rainSounds = [
     videoBackground: require('../../assets/videos/GentleWavesonaSmallWhiteRockBeach.mp4'),
     videoPoster: require('../../assets/images/posters/GentleWavesonaSmallWhiteRockBeach.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath5).uri,
-    timerDialogBackgroundColor: '#2c5056',
+    timerDialogBackgroundColor: 'rgb(9, 21, 39)',
     timerDialogFontColor: '#e4af91',
-    timerControlsFontColor: '#e4af91',
+    timerControlsFontColor: '#fff',
     playingSound: new Sound(
       'gentle_waves_on_a_small_white_rock_beach.mp3',
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load the night waves sound', error)
+          console.log('failed to load the waves rock beach sound', error)
           return
         }
       }
