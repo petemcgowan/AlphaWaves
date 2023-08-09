@@ -64,3 +64,5 @@ buck-out/
 
 RainNoiseApp.code-workspace
 notesdraft
+package.json
+android/app/release/app-release.aab
