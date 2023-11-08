@@ -141,6 +141,7 @@ const RainSlider = () => {
           <View style={styles.videoContainer} key={index}>
             {Platform.OS === 'ios' && (
               <Video
+                key={video.id}
                 source={video.videoBackground}
                 style={styles.video}
                 muted={true}
@@ -155,6 +156,7 @@ const RainSlider = () => {
             )}
             {Platform.OS === 'android' && (
               <Video
+                key={video.id}
                 source={video.videoBackground}
                 style={styles.video}
                 poster={rainSounds[songIndex].videoPosterUri}
