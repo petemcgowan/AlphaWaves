@@ -1,19 +1,19 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true,
+    es6: true,
     amd: true,
     node: true,
   },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: '2017',
     sourceType: 'module',
   },
   plugins: ['react', '@typescript-eslint'],
@@ -22,7 +22,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
       1,
-      {extensions: ['.js', '.jsx', '.ts', '.tsx']},
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
   },
   settings: {
@@ -31,4 +31,4 @@ module.exports = {
       version: 'detect',
     },
   },
-};
+}

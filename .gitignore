@@ -4,7 +4,11 @@
 
 # Xcode
 #
+# Build generated
 build/
+DerivedData/
+
+# Various settings
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -16,11 +20,54 @@ build/
 xcuserdata
 *.xccheckout
 *.moved-aside
-DerivedData
-*.hmap
-*.ipa
 *.xcuserstate
-ios/.xcode.env.local
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Coverage
+*.gcno
+*.gcda
+*.gcov
+
+# App Distribution
+*.ipa
+*.pkg
+*.dSYM.zip
+*.dSYM
+
+# Xcode Project & Workspace settings
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.build/
+
+# Environment variables
+*.env.local
+*.xcode.env.local
+.env
+.env.debug
+.env.release
+
+# Playgrounds
+timeline
+playground.xcworkspace
+
+# Swift PM resolve file (Package.resolved is usually kept in source control to ensure consistent dependencies)
+!**/Package.resolved
+
 
 # Android/IntelliJ
 #
