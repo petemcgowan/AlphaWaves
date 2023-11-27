@@ -43,9 +43,9 @@ const RainSlider = () => {
   useEffect(() => {
     if (Platform.OS === 'android') {
       NativeModules.ExoPlayerModule.preparePlaylist([
-        'cozy_cabin_porch_with_heavy_rainstorm_trim',
-        'night_rain_on_a_car_trim',
         'relaxing_sounds_of_light_rain_falling_on_the_car_trim',
+        'night_rain_on_a_car_trim',
+        'cozy_cabin_porch_with_heavy_rainstorm_trim',
         'rain_hitting_a_campervan_roof_window',
         'rain_on_water_swimming_pool_snip',
       ]);
@@ -181,8 +181,8 @@ const RainSlider = () => {
             style={styles.powerIcon}
             color={
               soundsPlaying[songIndex].playing
-                ? 'rgba(11, 57, 84, 1)'
-                : 'rgba(191, 215, 234, 0.75)'
+                ? 'rgba(191, 215, 234, 0.75)'
+                : 'rgba(11, 57, 84, 1)'
             }
           />
         </TouchableOpacity>

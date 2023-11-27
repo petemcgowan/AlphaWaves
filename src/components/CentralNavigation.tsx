@@ -20,8 +20,8 @@ export default function CentralNavigation() {
 
   React.useEffect(() => {
     // Has seen intro, now turn off onboarding
-    updateHasSeenIntro(false);
-    // updateHasSeenIntro(true)
+    // updateHasSeenIntro(false);
+    updateHasSeenIntro(true);
   });
 
   return (
