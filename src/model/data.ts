@@ -15,65 +15,12 @@ console.log('DataTsserverURL:' + DataTsserverURL);
 
 const rainSounds: RainSound[] = [
   {
-    // videoBackground: {
-    //   uri: `${Config.HLS_SERVER_URL}/rainInPorchOverlookingForest/master.m3u8`,
-    // },
     videoBackground: {
-      uri: `http://localhost:8080/rainInPorchOverlookingForest/master.m3u8`,
-    },
-    videoPoster: require('../../assets/images/posters/rainInPorchOverlookingForest.jpg'),
-    videoPosterUri: Image.resolveAssetSource(videoPosterPath1).uri,
-    timerDialogBackgroundColor: '#136a53',
-    timerDialogFontColor: '#d5e5ea',
-    timerControlsFontColor: '#d5e5ea',
-    playingSound: new Sound(
-      'cozy_cabin_porch_with_heavy_rainstorm_trim.mp3',
-      Sound.MAIN_BUNDLE,
-      error => {
-        if (error) {
-          console.log('failed to load the porch rainstorm sound', error);
-          return;
-        }
-      }
-    ),
-    volume: 0.7,
-    id: '1',
-  },
-  {
-    // videoBackground: {
-    //   uri: `${Config.HLS_SERVER_URL}/RainInACar/master.m3u8`,
-    // },
-    videoBackground: {
-      uri: `http://localhost:8080/RainInACar/master.m3u8`,
+      uri: `${Config.HLS_SERVER_URL}/RainInACarAltHD/master.m3u8`,
     },
     // videoBackground: {
-    //   uri: `http://192.168.61.161:8080/RainInACar/master.m3u8`,
+    //   uri: `http://localhost:8080/RainInACarAltHD/master.m3u8`,
     // },
-    videoPoster: require('../../assets/images/posters/RainInACar540x960.jpg'),
-    videoPosterUri: Image.resolveAssetSource(videoPosterPath2).uri,
-    timerDialogBackgroundColor: '#4d94ca',
-    timerDialogFontColor: '#afb7ad',
-    timerControlsFontColor: '#afb7ad',
-    playingSound: new Sound(
-      'night_rain_on_a_car_trim.mp3',
-      Sound.MAIN_BUNDLE,
-      error => {
-        if (error) {
-          console.log('failed to load the night rain car sound', error);
-          return;
-        }
-      }
-    ),
-    volume: 0.4,
-    id: '2',
-  },
-  {
-    // videoBackground: {
-    //   uri: `${Config.HLS_SERVER_URL}/RainInACarAltHD/master.m3u8`,
-    // },
-    videoBackground: {
-      uri: `http://localhost:8080/RainInACarAltHD/master.m3u8`,
-    },
     videoPoster: require('../../assets/images/posters/RainInACarAltHD.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath3).uri,
     timerDialogBackgroundColor: 'rgb(38, 27, 21)',
@@ -92,15 +39,65 @@ const rainSounds: RainSound[] = [
       }
     ),
     volume: 0.7,
-    id: '3',
+    id: '1',
   },
   {
     videoBackground: {
-      uri: `http://localhost:8080/rainPouringDown/master.m3u8`,
+      uri: `${Config.HLS_SERVER_URL}/RainInACar/master.m3u8`,
     },
     // videoBackground: {
-    //   uri: `${Config.HLS_SERVER_URL}/rainPouringDown/master.m3u8`,
+    //   uri: `http://localhost:8080/RainInACar/master.m3u8`,
     // },
+    videoPoster: require('../../assets/images/posters/RainInACar540x960.jpg'),
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath2).uri,
+    timerDialogBackgroundColor: '#4d94ca',
+    timerDialogFontColor: '#afb7ad',
+    timerControlsFontColor: '#afb7ad',
+    playingSound: new Sound(
+      'night_rain_on_a_car_trim.mp3',
+      Sound.MAIN_BUNDLE,
+      error => {
+        if (error) {
+          console.log('failed to load the night rain car sound', error);
+          return;
+        }
+      }
+    ),
+    volume: 0.3,
+    id: '2',
+  },
+  {
+    videoBackground: {
+      uri: `${Config.HLS_SERVER_URL}/rainInPorchOverlookingForest/master.m3u8`,
+    },
+    // videoBackground: {
+    //   uri: `http://localhost:8080/rainInPorchOverlookingForest/master.m3u8`,
+    // },
+    videoPoster: require('../../assets/images/posters/rainInPorchOverlookingForest.jpg'),
+    videoPosterUri: Image.resolveAssetSource(videoPosterPath1).uri,
+    timerDialogBackgroundColor: '#136a53',
+    timerDialogFontColor: '#d5e5ea',
+    timerControlsFontColor: '#d5e5ea',
+    playingSound: new Sound(
+      'cozy_cabin_porch_with_heavy_rainstorm_trim.mp3',
+      Sound.MAIN_BUNDLE,
+      error => {
+        if (error) {
+          console.log('failed to load the porch rainstorm sound', error);
+          return;
+        }
+      }
+    ),
+    volume: 0.7,
+    id: '3',
+  },
+  {
+    // videoBackground: {
+    //   uri: `http://localhost:8080/rainPouringDown/master.m3u8`,
+    // },
+    videoBackground: {
+      uri: `${Config.HLS_SERVER_URL}/rainPouringDown/master.m3u8`,
+    },
     videoPoster: require('../../assets/images/posters/HDerGrassyRain.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath4).uri,
     timerDialogBackgroundColor: 'rgb(38, 27, 21)',
@@ -122,14 +119,11 @@ const rainSounds: RainSound[] = [
     volume: 0.5,
   },
   {
-    // videoBackground: {
-    //   uri: `${Config.HLS_SERVER_URL}/blueSplashes/master.m3u8`,
-    // },
     videoBackground: {
-      uri: `http://localhost:8080/blueSplashes/master.m3u8`,
+      uri: `${Config.HLS_SERVER_URL}/blueSplashes/master.m3u8`,
     },
     // videoBackground: {
-    //   uri: `http://localhost:8080/GentleWavesonaSmallWhiteRockBeach/master.m3u8`,
+    //   uri: `http://localhost:8080/blueSplashes/master.m3u8`,
     // },
     videoPoster: require('../../assets/images/posters/blueSplashes3Reduced1.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath5).uri,
