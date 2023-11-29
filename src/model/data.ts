@@ -15,12 +15,12 @@ console.log('DataTsserverURL:' + DataTsserverURL);
 
 const rainSounds: RainSound[] = [
   {
-    videoBackground: {
-      uri: `${Config.HLS_SERVER_URL}/RainInACarAltHD/master.m3u8`,
-    },
     // videoBackground: {
-    //   uri: `http://localhost:8080/RainInACarAltHD/master.m3u8`,
+    //   uri: `${Config.HLS_SERVER_URL}/RainInACarAltHD/master.m3u8`,
     // },
+    videoBackground: {
+      uri: `http://ec2-52-23-111-225.compute-1.amazonaws.com:8080/RainInACarAltHD/master.m3u8`,
+    },
     videoPoster: require('../../assets/images/posters/RainInACarAltHD.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath3).uri,
     timerDialogBackgroundColor: 'rgb(38, 27, 21)',
@@ -42,12 +42,12 @@ const rainSounds: RainSound[] = [
     id: '1',
   },
   {
-    videoBackground: {
-      uri: `${Config.HLS_SERVER_URL}/RainInACar/master.m3u8`,
-    },
     // videoBackground: {
-    //   uri: `http://localhost:8080/RainInACar/master.m3u8`,
+    //   uri: `${Config.HLS_SERVER_URL}/RainInACar/master.m3u8`,
     // },
+    videoBackground: {
+      uri: `http://ec2-52-23-111-225.compute-1.amazonaws.com:8080/RainInACar/master.m3u8`,
+    },
     videoPoster: require('../../assets/images/posters/RainInACar540x960.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath2).uri,
     timerDialogBackgroundColor: '#4d94ca',
@@ -67,12 +67,12 @@ const rainSounds: RainSound[] = [
     id: '2',
   },
   {
-    videoBackground: {
-      uri: `${Config.HLS_SERVER_URL}/rainInPorchOverlookingForest/master.m3u8`,
-    },
     // videoBackground: {
-    //   uri: `http://localhost:8080/rainInPorchOverlookingForest/master.m3u8`,
+    //   uri: `${Config.HLS_SERVER_URL}/rainInPorchOverlookingForest/master.m3u8`,
     // },
+    videoBackground: {
+      uri: `http://ec2-52-23-111-225.compute-1.amazonaws.com:8080/rainInPorchOverlookingForest/master.m3u8`,
+    },
     videoPoster: require('../../assets/images/posters/rainInPorchOverlookingForest.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath1).uri,
     timerDialogBackgroundColor: '#136a53',
@@ -92,12 +92,12 @@ const rainSounds: RainSound[] = [
     id: '3',
   },
   {
-    // videoBackground: {
-    //   uri: `http://localhost:8080/rainPouringDown/master.m3u8`,
-    // },
     videoBackground: {
-      uri: `${Config.HLS_SERVER_URL}/rainPouringDown/master.m3u8`,
+      uri: `http://ec2-52-23-111-225.compute-1.amazonaws.com:8080/rainPouringDown/master.m3u8`,
     },
+    // videoBackground: {
+    //   uri: `${Config.HLS_SERVER_URL}/rainPouringDown/master.m3u8`,
+    // },
     videoPoster: require('../../assets/images/posters/HDerGrassyRain.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath4).uri,
     timerDialogBackgroundColor: 'rgb(38, 27, 21)',
@@ -119,12 +119,12 @@ const rainSounds: RainSound[] = [
     volume: 0.5,
   },
   {
-    videoBackground: {
-      uri: `${Config.HLS_SERVER_URL}/blueSplashes/master.m3u8`,
-    },
     // videoBackground: {
-    //   uri: `http://localhost:8080/blueSplashes/master.m3u8`,
+    //   uri: `${Config.HLS_SERVER_URL}/blueSplashes/master.m3u8`,
     // },
+    videoBackground: {
+      uri: `http://ec2-52-23-111-225.compute-1.amazonaws.com:8080/blueSplashes/master.m3u8`,
+    },
     videoPoster: require('../../assets/images/posters/blueSplashes3Reduced1.jpg'),
     videoPosterUri: Image.resolveAssetSource(videoPosterPath5).uri,
     timerDialogBackgroundColor: 'rgb(9, 21, 39)',
