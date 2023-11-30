@@ -14,6 +14,11 @@ import TimerControls from '../components/TimerControls';
 import CountdownTimer from '../components/CountdownTimer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
+import {actionCreators} from '../redux/index';
+import {useDispatch} from 'react-redux';
+import {bindActionCreators} from 'redux';
+// import {useSelector} from 'react-redux';
+// import {State} from '../redux/index';
 
 const {width, height} = Dimensions.get('window');
 
@@ -21,6 +26,9 @@ const RainSlider = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const [songIndex, setSongIndex] = useState(0);
   // const [playing, setPlaying] = useState(false)
+  // const hasSeenIntro = useSelector((state: State) => state.hasSeenIntro);
+  const dispatch = useDispatch();
+  const {updateHasSeenIntro} = bindActionCreators(actionCreators, dispatch);
 
   const [timerVisible, setTimerVisible] = useState(false);
 
@@ -41,6 +49,8 @@ const RainSlider = () => {
   rainSounds[songIndex].playingSound.setNumberOfLoops(-1);
 
   useEffect(() => {
+    updateHasSeenIntro(true);
+
     if (Platform.OS === 'android') {
       NativeModules.ExoPlayerModule.preparePlaylist([
         'relaxing_sounds_of_light_rain_falling_on_the_car_trim',
