@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  hls-server:
+    build: .
+    command: http-server /usr/src/app/hls -p 8080 --cors
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./hls:/usr/src/app/hls
+    restart: unless-stopped
