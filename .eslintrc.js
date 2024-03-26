@@ -4,6 +4,7 @@ module.exports = {
     es6: true,
     amd: true,
     node: true,
+    jest: true,
   },
   extends: [
     'eslint:recommended',
@@ -22,8 +23,11 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
       1,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      {extensions: ['.js', '.jsx', '.ts', '.tsx']},
     ],
+    // Adjustments for line breaks
+    'implicit-arrow-linebreak': 'off', // Disable implicit arrow line breaks
+    'multiline-ternary': ['error', 'never'], // Ensure ternary operators stay on one line
   },
   settings: {
     react: {
@@ -31,4 +35,4 @@ module.exports = {
       version: 'detect',
     },
   },
-}
+};
