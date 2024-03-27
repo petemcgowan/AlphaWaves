@@ -117,3 +117,4 @@ android/app/release/app-release.aab
 release/mockups/Alpha Waves mockups with images.mockup
 release/private_key.pepk
 AlphaWaves.code-workspace
+android/app/debug/app-debug.aab
