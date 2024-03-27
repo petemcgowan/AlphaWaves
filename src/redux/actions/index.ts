@@ -1,5 +1,3 @@
-// import {ActionType} from '../action-types';
-
 import {ActionType} from '../action-types';
 
 interface HasSeenIntroAction {

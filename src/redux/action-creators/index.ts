@@ -1,7 +1,10 @@
 import {Dispatch} from 'redux';
-
 import {ActionType} from '../action-types/index';
 
+export const downloadAndCacheFiles = (fileUrls: string[]) => ({
+  type: ActionType.DOWNLOAD_AND_CACHE_FILES,
+  payload: fileUrls,
+});
 
 export const updateHasSeenIntro = (hasSeenIntro: boolean) => {
   return (dispatch: Dispatch) => {
