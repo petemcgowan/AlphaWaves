@@ -1,23 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {
-  ScrollView,
-  Dimensions,
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import {ScrollView, Dimensions, StyleSheet, View, Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 // import Slide1 from './Slide1'
 // import Slide2 from './Slide2'
 // import Slide3 from './Slide3'
 import {State} from '../redux/index';
 import {useSelector} from 'react-redux';
-import SlideComponent, {
-  SlideComponentProps,
-} from '../components/SlideComponent';
+import SlideComponent, {SlideComponentProps} from '../components/SlideComponent';
 import {RFPercentage} from 'react-native-responsive-fontsize';
+
+// const rain_falling_brain_alpha_waves_energy = require.resolve(
+//   '../../assets/images/rain_falling_brain_alpha_waves_energy.png'
+// );
 
 const rain_falling_brain_alpha_waves_energy = require('../../assets/images/rain_falling_brain_alpha_waves_energy.png');
 const productivity_replenishing_sleep_cleansing_rain_calming = require('../../assets/images/productivity_replenishing_sleep_cleansing_rain_calming.png');
@@ -81,15 +75,10 @@ const OnboardingDeck = () => {
   // const hasSeenIntro = false
 
   const onScroll = (event: any) => {
-    const slide = Math.ceil(
-      event.nativeEvent.contentOffset.x /
-        event.nativeEvent.layoutMeasurement.width
-    );
+    const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
     if (slide !== activeSlide) {
       setActiveSlide(slide);
 
-      console.log('activeSlide:' + activeSlide + ', slide:' + slide);
-      console.log('slides.length:' + slides.length);
       if (slide > slides.length - 1) {
         console.log('Slides end reached');
       } else {
@@ -106,8 +95,7 @@ const OnboardingDeck = () => {
   useEffect(() => {}, []);
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: backgroundColor}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: backgroundColor}]}>
       {/* <View style={styles.topContainer}> */}
       <ScrollView
         horizontal
@@ -136,9 +124,7 @@ const OnboardingDeck = () => {
       <View style={styles.pagination}>
         {slides.map((_, index) => (
           <View style={styles.dotContainer} key={index}>
-            <Text
-              key={index}
-              style={index === activeSlide ? styles.activeDot : styles.dot}>
+            <Text key={index} style={index === activeSlide ? styles.activeDot : styles.dot}>
               •
             </Text>
           </View>
@@ -161,7 +147,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 0.84, // of topContainer
-    paddingTop: 20,
+    paddingTop: height * 0.02,
   },
   buttonContainer: {
     flex: 0.1,
@@ -174,14 +160,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: height * 0.01,
   },
   button: {
-    width: width * 0.65,
+    width: width * 0.6,
     height: height * 0.07,
-    backgroundColor: 'rgb(255, 165, 0)',
-    paddingHorizontal: 10,
-    marginBottom: 30,
+    backgroundColor: 'rgb(76, 175, 80)',
+    paddingHorizontal: width * 0.05,
+    marginBottom: height * 0.07,
     borderRadius: 30,
     elevation: 5, // for Android
     shadowOffset: {
@@ -199,21 +185,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dot: {
-    fontSize: RFPercentage(6.2),
-    lineHeight: RFPercentage(6.2), // special handling for special character
+    fontSize: RFPercentage(6.8),
+    lineHeight: RFPercentage(6.8), // special handling for special character
     color: '#888',
-    marginHorizontal: 11,
+    marginHorizontal: width * 0.02,
   },
   activeDot: {
     fontSize: RFPercentage(6.8),
     lineHeight: RFPercentage(6.8), // special handling for special character
     textAlignVertical: 'center',
     color: '#FFF',
-    marginHorizontal: 11,
+    marginHorizontal: width * 0.02,
   },
   buttonText: {
     color: '#FFF',
-    fontSize: RFPercentage(2.7),
+    fontSize: RFPercentage(2.6),
+    textAlign: 'center',
   },
 });
 

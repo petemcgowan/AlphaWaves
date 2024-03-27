@@ -1,32 +1,21 @@
-import React, { useRef } from 'react'
-import { View, Text, Dimensions, StyleSheet, Image } from 'react-native'
-import Video from 'react-native-video'
-import { RFPercentage } from 'react-native-responsive-fontsize'
+import React, {useRef} from 'react';
+import {View, Text, Dimensions, StyleSheet, Image} from 'react-native';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
-const { width, height } = Dimensions.get('window')
+const {width, height} = Dimensions.get('window');
 
 export interface SlideComponentProps {
-  type: string
-  title: string
-  description1: string
-  description2: string
-  image: string
-  videoLink: string
-  hasSeenIntro: boolean
+  type: string;
+  title: string;
+  description1: string;
+  description2: string;
+  image: string;
+  videoLink: string | null;
+  hasSeenIntro: boolean;
 }
 
-const SlideComponent = ({
-  type,
-  title,
-  description1,
-  description2,
-  image,
-  videoLink,
-  hasSeenIntro,
-}: SlideComponentProps) => {
-  const dominantColor = 'rgb(38, 27, 21)' // Dominant colour of image
-  const videoRef = useRef(null)
-
+const SlideComponent = ({type, title, description1, description2, image, videoLink, hasSeenIntro}: SlideComponentProps) => {
+  console.log('SlideComponent, image:' + image);
   return (
     <View style={styles.slideContainer}>
       {image && (
@@ -44,15 +33,16 @@ const SlideComponent = ({
         <Text style={styles.text}>{description2}</Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default SlideComponent
+export default SlideComponent;
 
 const styles = StyleSheet.create({
   slideContainer: {
     width: width,
-    paddingTop: 10,
+    paddingTop: height * 0.01,
+    // paddingBottom: width * 0.04,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -62,8 +52,8 @@ const styles = StyleSheet.create({
     width: width,
     height: height * 0.5,
     alignSelf: 'center',
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    paddingVertical: width * 0.02,
+    paddingHorizontal: width * 0.05,
   },
   image: {
     width: '100%',
@@ -75,30 +65,30 @@ const styles = StyleSheet.create({
   },
   textBox1: {
     // flex: 0.11, // of slideContainer
-    paddingHorizontal: 5,
+    paddingHorizontal: width * 0.02,
     // flexShrink: 1,
     alignItems: 'center',
   },
   textBox2: {
-    paddingHorizontal: 5,
+    paddingHorizontal: width * 0.02,
     alignItems: 'center',
     justifyContent: 'flex-end', // so the text flows to the bottom
-    marginBottom: 10,
+    marginBottom: width * 0.02,
   },
   text: {
     color: 'white',
     textAlign: 'center',
-    // fontSize: 20,
-    fontSize: RFPercentage(2.6),
+    fontSize: RFPercentage(2.3),
+    maxWidth: width - width * 0.1,
     justifyContent: 'center',
   },
   titleText: {
     color: 'white',
     textAlign: 'center',
     fontWeight: '600',
-    // fontSize: 18,
     fontSize: RFPercentage(3.2),
     justifyContent: 'center',
-    marginBottom: 10,
+    maxWidth: width - width * 0.05,
+    // marginBottom: width * 0.02,
   },
-})
+});
