@@ -1,3 +1,5 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"
@@ -8,8 +10,9 @@ buildscript {
         // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
         ndkVersion = "23.1.7779620"
 
-        // Set the compileSdkVersion for react-native-picky
         Picky_compileSdkVersion = 33
+        Picky_minSdkVersion = 21
+
     }
     repositories {
         google()
@@ -30,10 +33,10 @@ allprojects {
     // Add this block to override the SDK version for react-native-picky
     configurations.all {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'YOUR_DEPENDENCY_GROUP'
-                    && details.requested.name == 'react-native-picky') {
+            if (details.requested.group == 'com.facebook.react' && details.requested.name == 'react-native-picky') {
                 details.useVersion "33"
             }
         }
     }
 }
+
