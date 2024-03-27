@@ -3,6 +3,7 @@ package com.buachaillmaith.rainnoiseapp;
 import android.net.Uri;
 import android.util.Log;
 
+import com.facebook.react.bridge.ReadableMap;
 import com.google.android.exoplayer2.MediaItem;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableType;
@@ -21,7 +22,7 @@ public class ExoPlayerModule extends ReactContextBaseJavaModule {
 
     private static ReactApplicationContext reactContext;
     private SimpleExoPlayer player;
-
+    private float[] volumes;
     ExoPlayerModule(ReactApplicationContext context) {
         super(context);
         reactContext = context;
@@ -33,52 +34,45 @@ public class ExoPlayerModule extends ReactContextBaseJavaModule {
     }
 
 
-    // Add the MediaItems to  player as soon as one has all of them
+    // Add the MediaItems to player as soon as one has all of them
 @ReactMethod
-public void preparePlaylist(ReadableArray uriStrings) {
-    Log.d("ExoPlayerModule", "Received URI strings: " + uriStrings.toString());
+public void preparePlaylist(ReadableArray playlist) {
+    Log.d("ExoPlayerModule", "Received playlist strings: " + playlist.toString());
 
     if (player == null) {
         List<MediaItem> mediaItems = new ArrayList<>();
+        volumes = new float[playlist.size()];
 
-        for (int i = 0; i < uriStrings.size(); i++) {
-            if (uriStrings.getType(i) == ReadableType.String) {
-                String uriString = uriStrings.getString(i);
-                int resourceId = reactContext.getResources().getIdentifier(uriString, "raw", reactContext.getPackageName());
-                Log.d("ExoPlayerModule", "URI string: " + uriString + ", Resource ID: " + resourceId);
+        for (int i = 0; i < playlist.size(); i++) {
+            ReadableMap item = playlist.getMap(i);
+            String uriString = item.getString("name");
+            volumes[i] = (float) item.getDouble("volume"); // Store the volumes for later
 
-                if (resourceId == 0) {
-                    Log.e("ExoPlayerModule", "Invalid resource ID for URI: " + uriString);
-                    continue;
-                }
-
-                Uri uri = Uri.parse("android.resource://" + reactContext.getPackageName() + "/" + resourceId);
-                Log.d("ExoPlayerModule", "Created URI: " + uri.toString());
-
-                MediaItem mediaItem = MediaItem.fromUri(uri);
-                mediaItems.add(mediaItem);
-            }
+            int resourceId = reactContext.getResources().getIdentifier(uriString, "raw", reactContext.getPackageName());
+            Uri uri = Uri.parse("android.resource://" + reactContext.getPackageName() + "/" + resourceId);
+            MediaItem mediaItem = MediaItem.fromUri(uri);
+            mediaItems.add(mediaItem);
         }
 
         try {
             player = new SimpleExoPlayer.Builder(reactContext).build();
-            player.addListener(new Player.Listener() {
-                @Override
-                public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-                    Log.d("ExoPlayerModule", "Player state changed: playWhenReady = " + playWhenReady + ", playbackState = " + playbackState);
-                }
-
-                @Override
-                public void onPlayerError(PlaybackException error) {
-                    Log.e("ExoPlayerModule", "Player error: " + error.getMessage());
-                }
-            });
             player.setRepeatMode(Player.REPEAT_MODE_ONE);
             player.setMediaItems(mediaItems);
-            for (MediaItem item : mediaItems) {
-                Log.d("ExoPlayerModule", "Added MediaItem: " + item.mediaId + " URI: " + item.playbackProperties.uri.toString());
-            }
             player.prepare();
+        } catch (Exception e) {
+            Log.e("ExoPlayerModule", "Error preparing player: " + e.getMessage());
+        }
+
+        // Set up the onPositionDiscontinuity listener
+        try {
+            Player exoPlayer = player;
+            exoPlayer.addListener(new Player.Listener() {
+                @Override
+                public void onPositionDiscontinuity(@Player.DiscontinuityReason int reason) {
+                    int currentWindowIndex = player.getCurrentMediaItemIndex();
+                    float volume = volumes[currentWindowIndex];
+                    player.setVolume(volume);                }
+            });
         } catch (Exception e) {
             Log.e("ExoPlayerModule", "Error preparing player: " + e.getMessage());
         }
