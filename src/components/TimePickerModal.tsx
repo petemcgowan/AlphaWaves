@@ -1,14 +1,10 @@
-import React from 'react'
-import {
-  Modal,
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-  Platform,
-} from 'react-native'
-import { TimePicker } from 'react-native-simple-time-picker'
-import { Picker, PickerColumn, PickerItem } from 'react-native-picky'
+import React from 'react';
+import {Modal, View, Text, Pressable, StyleSheet, Platform, Dimensions} from 'react-native';
+import {TimePicker} from 'react-native-simple-time-picker';
+import {Picker, PickerColumn, PickerItem} from 'react-native-picky';
+import {RFPercentage} from 'react-native-responsive-fontsize';
+
+const {width, height} = Dimensions.get('window');
 
 const TimePickerModal = ({
   modalVisible,
@@ -30,79 +26,48 @@ const TimePickerModal = ({
   setTimerVisible,
 }) => {
   const closeModal = () => {
-    setModalVisible(false)
-  }
+    setModalVisible(false);
+  };
 
   const confirmModal = () => {
     if (hours === 0 && minutes === 0 && seconds === 0) {
-      setModalVisible(false)
-      return
+      setModalVisible(false);
+      return;
     }
-    setModalVisible(!modalVisible)
-    setTimerVisible(true)
+    setModalVisible(!modalVisible);
+    setTimerVisible(true);
     if (!playing) {
-      togglePlayback()
+      togglePlayback(true);
     }
-  }
+  };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={closeModal}
-    >
+    <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={closeModal}>
       <View>
-        <View
-          style={[
-            styles.modalView,
-            { backgroundColor: timerDialogBackgroundColor },
-          ]}
-        >
+        <View style={[styles.modalView, {backgroundColor: timerDialogBackgroundColor}]}>
           {Platform.OS === 'ios' && (
             <TimePicker
               textColor={timerDialogFontColor}
-              value={{ hours, minutes, seconds }}
+              value={{hours, minutes, seconds}}
               onChange={handleChange}
               pickerShows={['hours', 'minutes', 'seconds']}
             />
           )}
           {Platform.OS === 'android' && (
-            <Picker textColor={timerDialogFontColor} textSize={60}>
-              <PickerColumn
-                selectedValue={hours}
-                onChange={(event) => setHours(+event.value.toString())}
-              >
-                {hourOptions.map((hourValue) => (
-                  <PickerItem
-                    label={hourValue.toString()}
-                    value={hourValue.toString()}
-                    key={hourValue}
-                  />
+            <Picker textColor={timerDialogFontColor} textSize={width * 0.09}>
+              <PickerColumn selectedValue={hours} onChange={event => setHours(+event.value.toString())}>
+                {hourOptions.map(hourValue => (
+                  <PickerItem label={hourValue.toString()} value={hourValue.toString()} key={hourValue} />
                 ))}
               </PickerColumn>
-              <PickerColumn
-                selectedValue={minutes}
-                onChange={(event) => setMinutes(+event.value.toString())}
-              >
-                {minuteOptions.map((minuteValue) => (
-                  <PickerItem
-                    label={minuteValue.toString()}
-                    value={minuteValue.toString()}
-                    key={minuteValue}
-                  />
+              <PickerColumn selectedValue={minutes} onChange={event => setMinutes(+event.value.toString())}>
+                {minuteOptions.map(minuteValue => (
+                  <PickerItem label={minuteValue.toString()} value={minuteValue.toString()} key={minuteValue} />
                 ))}
               </PickerColumn>
-              <PickerColumn
-                selectedValue={seconds}
-                onChange={(event) => setSeconds(+event.value.toString())}
-              >
-                {secondOptions.map((secondValue) => (
-                  <PickerItem
-                    label={secondValue.toString()}
-                    value={secondValue.toString()}
-                    key={secondValue}
-                  />
+              <PickerColumn selectedValue={seconds} onChange={event => setSeconds(+event.value.toString())}>
+                {secondOptions.map(secondValue => (
+                  <PickerItem label={secondValue.toString()} value={secondValue.toString()} key={secondValue} />
                 ))}
               </PickerColumn>
             </Picker>
@@ -115,8 +80,7 @@ const TimePickerModal = ({
                   backgroundColor: timerDialogFontColor,
                 },
               ]}
-              onPress={closeModal}
-            >
+              onPress={closeModal}>
               <Text style={styles.textStyle}>Back</Text>
             </Pressable>
             <Pressable
@@ -126,24 +90,23 @@ const TimePickerModal = ({
                   backgroundColor: timerDialogFontColor,
                 },
               ]}
-              onPress={confirmModal}
-            >
+              onPress={confirmModal}>
               <Text style={styles.textStyle}>Confirm</Text>
             </Pressable>
           </View>
         </View>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
-export default TimePickerModal
+export default TimePickerModal;
 
 const styles = StyleSheet.create({
   button: {
     width: '50%',
     borderRadius: 10,
-    padding: 10,
+    padding: width * 0.03,
     elevation: 2,
   },
   modalBottomButtons: {
@@ -153,12 +116,12 @@ const styles = StyleSheet.create({
   textStyle: {
     color: '#777777',
     textAlign: 'center',
-    fontSize: 22,
+    fontSize: RFPercentage(2.85),
   },
   modalView: {
-    marginTop: 80,
+    marginTop: height * 0.1,
     borderRadius: 20,
-    padding: 20,
+    padding: height * 0.02,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -169,4 +132,4 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-})
+});

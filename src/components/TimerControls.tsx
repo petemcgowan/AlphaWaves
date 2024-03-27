@@ -1,28 +1,16 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Platform,
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, View, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Utils from './Utils';
-// import rainSounds from '../model/data';
 import TimePickerModal from './TimePickerModal';
 import {RainSound} from '../types/RainSound';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
 const {width} = Dimensions.get('window');
 
-const secondOptions = Utils.selectionDropDownRange(0, 59).map(
-  second => second.value
-);
+const secondOptions = Utils.selectionDropDownRange(0, 59).map(second => second.value);
 
-const minuteOptions = Utils.selectionDropDownRange(0, 59).map(
-  minute => minute.value
-);
+const minuteOptions = Utils.selectionDropDownRange(0, 59).map(minute => minute.value);
 const hourOptions = Utils.selectionDropDownRange(0, 23).map(hour => hour.value);
 
 interface TimerControlsProps {
@@ -34,7 +22,7 @@ interface TimerControlsProps {
   seconds: number;
   setSeconds: (seconds: number) => void;
   playing: boolean;
-  togglePlayback: () => void;
+  togglePlayback: (fromModal: boolean) => void;
   intentionalVideoPlay: boolean;
   setIntentionalVideoPlay: (intentionalVideoPlay: boolean) => void;
   timerDialogBackgroundColor: string;
@@ -43,11 +31,7 @@ interface TimerControlsProps {
   rainSounds: RainSound[];
 }
 
-export type ChangeHandler = (value: {
-  hours: number;
-  minutes: number;
-  seconds: number;
-}) => void;
+export type ChangeHandler = (value: {hours: number; minutes: number; seconds: number}) => void;
 
 export default function TimerControls({
   setTimerVisible,
@@ -68,14 +52,11 @@ export default function TimerControls({
 }: TimerControlsProps) {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handleChange: ChangeHandler = (value: {
-    hours: number;
-    minutes: number;
-    seconds: number;
-  }) => {
-    setHours(value.hours);
-    setMinutes(value.minutes);
-    setSeconds(value.seconds);
+  const handleChange: ChangeHandler = (value: {hours: number | string; minutes: number | string; seconds: number | string}) => {
+    // TimePicker changes the type depending on whether it was last used or not 😳
+    setHours(typeof value.hours === 'string' ? parseInt(value.hours, 10) : value.hours);
+    setMinutes(typeof value.minutes === 'string' ? parseInt(value.minutes, 10) : value.minutes);
+    setSeconds(typeof value.seconds === 'string' ? parseInt(value.seconds, 10) : value.seconds);
   };
 
   return (
@@ -104,9 +85,7 @@ export default function TimerControls({
       <View style={styles.bottomContainer}>
         <View style={styles.pagination}>
           {rainSounds.map((_, index) => (
-            <Text
-              key={index}
-              style={index === songIndex ? styles.activeDot : styles.dot}>
+            <Text key={index} style={index === songIndex ? styles.activeDot : styles.dot}>
               •
             </Text>
           ))}
@@ -127,17 +106,8 @@ export default function TimerControls({
               width: width * 0.4,
               alignItems: 'center',
             }}>
-            <TouchableOpacity
-              onPress={() => setIntentionalVideoPlay(!intentionalVideoPlay)}>
-              <Ionicons
-                name="videocam-outline"
-                size={90}
-                color={
-                  intentionalVideoPlay
-                    ? 'rgba(11, 57, 84, 0.75)'
-                    : 'rgba(119, 119, 119, 0.75)'
-                }
-              />
+            <TouchableOpacity onPress={() => setIntentionalVideoPlay(!intentionalVideoPlay)}>
+              <Ionicons name="videocam-outline" size={90} color={intentionalVideoPlay ? 'rgba(11, 57, 84, 0.75)' : 'rgba(119, 119, 119, 0.75)'} />
             </TouchableOpacity>
           </View>
           <View style={{width: width * 0.1}}></View>
@@ -160,13 +130,14 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   dot: {
-    fontSize: 35,
+    fontSize: RFPercentage(6.8),
     color: '#888',
-    margin: 3,
+    marginHorizontal: width * 0.02,
   },
   activeDot: {
-    fontSize: 35,
+    fontSize: RFPercentage(6.8),
     color: '#FFF',
+    marginHorizontal: width * 0.02,
   },
   pagination: {
     flexDirection: 'row',
