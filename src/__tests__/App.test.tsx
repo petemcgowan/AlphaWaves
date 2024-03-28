@@ -17,5 +17,5 @@ import renderer from 'react-test-renderer';
 // });
 
 it('renders correctly', () => {
-  console.log('App non test');
+  console.debug('App non test');
 });

@@ -14,28 +14,6 @@ const downloadNextFile = async (currentFileIndex, fileUrls, newState) => {
   }
   if (currentFileIndex === 0) {
     const localAssetPath = 'assets/videos/RainInACarAltHD.mp4';
-
-    // const cachedFilePath = `${RNFS.CachesDirectoryPath}/${localAssetPath.split('/').pop()}`;
-    // const cachedAssetExists = await RNFS.exists(cachedFilePath);
-    // if (!cachedAssetExists) {
-    //   try {
-    //     const assetPath = `${RNFS.MainBundlePath}/${localAssetPath}`;
-    //     const assetExists = await RNFS.exists(assetPath);
-    //     if (assetExists) {
-    //       console.debug('downloadNextFile, localAssetPath:' + localAssetPath);
-    //       await RNFS.copyFile(assetPath, cachedFilePath);
-    //       newState[fileUrls[currentFileIndex]] = cachedFilePath;
-    //     } else {
-    //       console.error(`FILECACHEREDUCER: Asset not found: ${localAssetPath}`);
-    //       newState[fileUrls[currentFileIndex]] = null;
-    //     }
-    //   } catch (err) {
-    //     console.error(`FILECACHEREDUCER: Error copying local asset ${localAssetPath}: ${err}`);
-    //     newState[fileUrls[currentFileIndex]] = null;
-    //   }
-    // } else {
-    //   console.log('Cached Asset already exists:' + cachedAssetExists);
-    // }
   } else {
     const fileUrl = fileUrls[currentFileIndex];
     const cachedFilePath = `${RNFS.CachesDirectoryPath}/${fileUrl.split('/').pop()}`;

@@ -15,7 +15,6 @@ export interface SlideComponentProps {
 }
 
 const SlideComponent = ({type, title, description1, description2, image, videoLink, hasSeenIntro}: SlideComponentProps) => {
-  console.log('SlideComponent, image:' + image);
   return (
     <View style={styles.slideContainer}>
       {image && (

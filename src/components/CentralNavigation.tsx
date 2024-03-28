@@ -16,22 +16,17 @@ const AppStack = createStackNavigator();
 export default function CentralNavigation() {
   const hasSeenIntro = useSelector((state: State) => state.hasSeenIntro);
   // const hasSeenIntro = false;
-  console.log('CentralNavigation, before useDispatch');
   const dispatch = useDispatch();
-  console.log('CentralNavigation, before bindActionCreators');
   const {downloadAndCacheFiles} = bindActionCreators(actionCreators, dispatch);
-  console.log('Instantiating RainSlider...');
 
   React.useEffect(() => {
     // Download And Cache files
-    console.log('CentralNavigation, before rainSounds map');
     const fileUrls = rainSounds.map((item: RainSound) => {
       if (!item.videoFile) {
         console.log('Item without videoFile:', item);
       }
       return item.videoFile.uri;
     });
-    console.log('CentralNavigation, before dispatch(downloadAndCacheFile');
     dispatch(downloadAndCacheFiles(fileUrls));
   }, [dispatch]);
 
