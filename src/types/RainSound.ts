@@ -1,15 +1,25 @@
 import Sound from 'react-native-sound';
 
 export interface RainSound {
+  hlsPlaylist: {
+    uri: string;
+  };
+  videoFile: {
+    uri: string;
+  };
   videoBackground: {
     uri: string;
   };
-  videoPoster: any; // 'require' returns any, adjust if you have a more specific type
+  videoLoaded: boolean;
+  videoExists: boolean;
+  videoFileSize: number;
+  videoPoster: any; // 'require' returns any
   videoPosterUri: string;
+  videoPosterPath: string;
   timerDialogBackgroundColor: string;
   timerDialogFontColor: string;
   timerControlsFontColor: string;
-  playingSound: Sound; // Assuming 'Sound' is a type you've defined elsewhere
+  playingSound: Sound | null;
   volume: number;
   id: string;
 }
