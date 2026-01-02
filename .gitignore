@@ -75,3 +75,7 @@ yarn-error.log
 !.yarn/versions
 AlphaWavesNoise.code-workspace
 AlphaWaves.code-workspace
+client/android/app/debug.keystore
+client/android/app/release/app-release.aab
+
+notesdraft
