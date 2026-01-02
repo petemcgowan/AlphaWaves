@@ -1,0 +1,15 @@
+export const RainCar = require('../../assets/sounds/relaxing_sounds_of_light_rain_falling_on_the_car_trim.m4a')
+export const RainNight = require('../../assets/sounds/night_rain_on_a_car_trim.m4a')
+export const RainPorch = require('../../assets/sounds/cozy_cabin_porch_with_heavy_rainstorm_trim.m4a')
+export const RainCamper = require('../../assets/sounds/rain_hitting_a_campervan_roof_window.m4a')
+export const RainPool = require('../../assets/sounds/rain_on_water_swimming_pool_snip.m4a')
+
+export const NoisePink = require('../../assets/sounds/pink_brown_900hz_lc_noise_together_mini.m4a')
+export const NoiseBrown1 = require('../../assets/sounds/brown_900hz_lc_noise_mini.m4a')
+export const NoiseBrown2 = require('../../assets/sounds/noise_brown_v3_131_600_tighter_slopes_mini.m4a')
+export const NoiseBrown3 = require('../../assets/sounds/brown_900hz_lc_noise_mod_mini.m4a')
+
+export const ThetaPure1 = require('../../assets/sounds/binaural_beats_pure_theta_low4.m4a')
+export const ThetaCosmic = require('../../assets/sounds/binaural_beats_cosmic_drift4.m4a')
+export const ThetaEarth = require('../../assets/sounds/binaural_beats_earth_resonant4.m4a')
+export const ThetaPure2 = require('../../assets/sounds/binaural_beats_pure_theta_high4.m4a')
