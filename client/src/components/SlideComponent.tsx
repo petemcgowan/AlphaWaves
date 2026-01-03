@@ -44,12 +44,12 @@ const SlideComponent = ({
     <View style={styles.slideContainer}>
       <View style={styles.mediaSection}>
         <View style={styles.mediaWrapper}>
-          {/* CASE A: STATIC IMAGE */}
+          {/* STATIC IMAGE */}
           {type === 'image' && image && (
             <Image style={styles.image} source={image} resizeMode="contain" />
           )}
 
-          {/* CASE B: VIDEO WITH POSTER */}
+          {/* VIDEO WITH POSTER */}
           {type === 'video' && videoSource && (
             <View style={styles.videoInner}>
               {/* 2. THE VIDEO (Top Layer) */}

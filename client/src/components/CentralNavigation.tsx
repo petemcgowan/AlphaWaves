@@ -29,25 +29,6 @@ export default function CentralNavigation() {
   const dispatch = useDispatch()
   const downloadQueue = []
 
-  // useEffect(() => {
-  //   const checkPermissions = async () => {
-  //     if (Platform.OS === 'android' && Platform.Version >= 33) {
-  //       const granted = await PermissionsAndroid.request(
-  //         PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
-  //       )
-
-  //       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //         console.log('Notification permission granted')
-  //       } else {
-  //         console.log('Notification permission denied')
-  //       }
-  //     }
-  //   }
-
-  //   checkPermissions()
-  //   // ... rest of your bootstrap logic ...
-  // }, [])
-
   React.useEffect(() => {
     const bootstrapApp = async () => {
       console.log('CentralNavigation: Bootstrapping App...')
@@ -79,11 +60,11 @@ export default function CentralNavigation() {
       // Helper to extract valid URLs for downloading
       const addToQueue = (items: any[]) => {
         items.forEach(item => {
-          // 1. Video URL?
+          // Video URL?
           if (item.videoFile?.uri) {
             downloadList.push(item.videoFile.uri)
           }
-          // 2. Audio URL?
+          // Audio URL?
           if (Platform.OS === 'android' && item.remoteAudioUrl) {
             downloadList.push(item.remoteAudioUrl)
           }

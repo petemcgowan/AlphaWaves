@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Modal,
   View,
@@ -6,35 +6,35 @@ import {
   Pressable,
   StyleSheet,
   Dimensions,
-} from 'react-native';
-import { RFPercentage } from 'react-native-responsive-fontsize';
-import { ScrollPicker } from './ScrollPicker';
+} from 'react-native'
+import {RFPercentage} from 'react-native-responsive-fontsize'
+import {ScrollPicker} from './ScrollPicker'
 
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window')
 
 // Helper to generate arrays [0...N]
-const generateRange = (max: number) => Array.from({ length: max }, (_, i) => i);
+const generateRange = (max: number) => Array.from({length: max}, (_, i) => i)
 
 interface TimePickerModalProps {
-  modalVisible: boolean;
-  setModalVisible: (v: boolean) => void;
-  timerDialogBackgroundColor: string;
-  timerDialogFontColor: string;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  setHours: (v: number) => void;
-  setMinutes: (v: number) => void;
-  setSeconds: (v: number) => void;
-  playing: boolean;
-  togglePlayback: (force?: boolean) => void;
-  setTimerVisible: (v: boolean) => void;
+  modalVisible: boolean
+  setModalVisible: (v: boolean) => void
+  timerDialogBackgroundColor: string
+  timerDialogFontColor: string
+  hours: number
+  minutes: number
+  seconds: number
+  setHours: (v: number) => void
+  setMinutes: (v: number) => void
+  setSeconds: (v: number) => void
+  playing: boolean
+  togglePlayback: (force?: boolean) => void
+  setTimerVisible: (v: boolean) => void
 }
 
 const TimePickerModal = ({
   modalVisible,
   setModalVisible,
-  timerDialogBackgroundColor = '#222', // Default dark
+  timerDialogBackgroundColor = '#222',
   timerDialogFontColor = '#fff',
   hours,
   minutes,
@@ -47,49 +47,47 @@ const TimePickerModal = ({
   setTimerVisible,
 }: TimePickerModalProps) => {
   const closeModal = () => {
-    setModalVisible(false);
-  };
+    setModalVisible(false)
+  }
 
   const confirmModal = () => {
     if (hours === 0 && minutes === 0 && seconds === 0) {
-      setModalVisible(false);
-      return;
+      setModalVisible(false)
+      return
     }
-    setModalVisible(!modalVisible);
-    setTimerVisible(true);
+    setModalVisible(!modalVisible)
+    setTimerVisible(true)
     if (!playing) {
-      togglePlayback(true);
+      togglePlayback(true)
     }
-  };
+  }
 
   // Generate data arrays
-  const hourOptions = generateRange(24);
-  const minuteOptions = generateRange(60);
-  const secondOptions = generateRange(60);
+  const hourOptions = generateRange(24)
+  const minuteOptions = generateRange(60)
+  const secondOptions = generateRange(60)
 
   return (
     <Modal
       animationType="fade"
       transparent={true}
       visible={modalVisible}
-      onRequestClose={closeModal}
-    >
+      onRequestClose={closeModal}>
       <View style={styles.centeredView}>
         <View
           style={[
             styles.modalView,
-            { backgroundColor: timerDialogBackgroundColor },
-          ]}
-        >
+            {backgroundColor: timerDialogBackgroundColor},
+          ]}>
           {/* Header Labels (Optional, mimics spindle headers) */}
           <View style={styles.headerRow}>
-            <Text style={[styles.label, { color: timerDialogFontColor }]}>
+            <Text style={[styles.label, {color: timerDialogFontColor}]}>
               Hr
             </Text>
-            <Text style={[styles.label, { color: timerDialogFontColor }]}>
+            <Text style={[styles.label, {color: timerDialogFontColor}]}>
               Min
             </Text>
-            <Text style={[styles.label, { color: timerDialogFontColor }]}>
+            <Text style={[styles.label, {color: timerDialogFontColor}]}>
               Sec
             </Text>
           </View>
@@ -119,25 +117,23 @@ const TimePickerModal = ({
           {/* Buttons */}
           <View style={styles.modalBottomButtons}>
             <Pressable
-              style={[styles.button, { backgroundColor: '#fff' }]}
-              onPress={closeModal}
-            >
+              style={[styles.button, {backgroundColor: '#fff'}]}
+              onPress={closeModal}>
               <Text style={styles.textStyle}>Back</Text>
             </Pressable>
             <Pressable
-              style={[styles.button, { backgroundColor: '#fff' }]}
-              onPress={confirmModal}
-            >
+              style={[styles.button, {backgroundColor: '#fff'}]}
+              onPress={confirmModal}>
               <Text style={styles.textStyle}>Confirm</Text>
             </Pressable>
           </View>
         </View>
       </View>
     </Modal>
-  );
-};
+  )
+}
 
-export default TimePickerModal;
+export default TimePickerModal
 
 const styles = StyleSheet.create({
   centeredView: {
@@ -152,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
@@ -196,4 +192,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: RFPercentage(2.1),
   },
-});
+})

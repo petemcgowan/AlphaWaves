@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   Text,
-  Image, // Required for the fallback
+  Image,
 } from 'react-native'
 import PagerView from 'react-native-pager-view'
 import TimerControls from '../components/TimerControls'
@@ -40,34 +40,31 @@ const SlideItem = ({
 }) => {
   const isCurrent = index === activeIndex
 
-  // CRITICAL FIX: Only mount Video if it is the CURRENT slide.
-  // Neighbors get Image only. This stops the Android Decoder Crash.
+  // Only mount Video if it is the CURRENT slide.
   const showVideoComponent = isCurrent
 
   const source = useMemo(() => {
-    // 1. Disk Cache
+    // Disk Cache
     if (downloadedFiles[item.videoFile?.uri]) {
       return {uri: 'file://' + getLocalPath(item.videoFile.uri)}
     }
-    // 2. HLS
+    // HLS
     if (item.hlsPlaylist?.uri) {
       return item.hlsPlaylist
     }
-    // 3. Fallback
+    // Fallback
     return {uri: item.videoFile?.uri}
   }, [item, downloadedFiles])
 
   const isLocal = !!downloadedFiles[item.videoFile?.uri]
 
-  // Resolve Poster: Handle 'require' number OR object
   const posterSource = item.videoPoster
     ? item.videoPoster
     : {uri: item.videoPosterUri}
-  // console.log('source:', source)
 
   return (
     <View style={styles.videoContainer}>
-      {/* LAYER 1: POSTER (Always visible) */}
+      {/* POSTER */}
       <Image source={posterSource} style={styles.video} resizeMode="cover" />
 
       {showVideoComponent && (
@@ -132,8 +129,6 @@ const CategorySlider = ({
   const translateY = useSharedValue(0)
   const opacity = useSharedValue(0)
 
-  // ... (Keep your useEffects for Hint/Animation exactly as they were) ...
-
   const togglePlayback = (forcePlay = false) => {
     const newState = forcePlay ? true : !isPlaying
     onTogglePlay(newState)
@@ -165,7 +160,7 @@ const CategorySlider = ({
         orientation="horizontal"
         onPageSelected={e => setSongIndex(e.nativeEvent.position)}>
         {data.map((item, index) => {
-          // Optimization: Don't render far-away slides
+          // Don't render far-away slides
           if (Math.abs(songIndex - index) > 1) return <View key={index} />
 
           return (
@@ -184,7 +179,7 @@ const CategorySlider = ({
         })}
       </PagerView>
 
-      {/* 2. CONTROLS OVERLAY */}
+      {/* CONTROLS OVERLAY */}
       <View style={styles.powerControls}>
         <TouchableOpacity
           style={styles.powerIcon}
@@ -219,7 +214,7 @@ const CategorySlider = ({
         )}
       </View>
 
-      {/* 4. SWIPE HINT */}
+      {/* SWIPE HINT */}
       {showSwipeHint && !effectiveIsPlaying && (
         <View style={styles.hintContainer} pointerEvents="none">
           <Animated.View style={animatedStyle}>
@@ -289,7 +284,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
   },
-  // ... Keep existing control styles ...
   timerCountdown: {
     flexBasis: '20%',
     marginBottom: height * 0.06,

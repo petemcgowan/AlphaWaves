@@ -171,15 +171,9 @@ const noiseSounds = [
   },
   {
     id: 'noise-3',
-    // videoFile: {
-    //   uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/HotAirBalloonatNightTurkey.mp4`,
-    // },
     videoFile: {
       uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/bigBalloonDay1080_1920_60fps.mp4`,
     },
-    // hlsPlaylist: {
-    //   uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/welcome/HotAirBalloonatNightTurkey.m3u8`,
-    // },
     hlsPlaylist: {
       uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/welcome/bigBalloonDay1080_1920_60fps.m3u8`,
     },
@@ -198,15 +192,9 @@ const noiseSounds = [
   },
   {
     id: 'noise-4',
-    // videoFile: {
-    //   uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/nightWavesAndSun.mp4`,
-    // },
     videoFile: {
       uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/waves_and_rocks_1080_1920_30fps.mp4`,
     },
-    // hlsPlaylist: {
-    //   uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/welcome/nightWavesAndSun.m3u8`,
-    // },
     hlsPlaylist: {
       uri: `https://d2lxk2a39jwsfn.cloudfront.net/hls/welcome/waves_and_rocks_1080_1920_30fps.m3u8`,
     },

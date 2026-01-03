@@ -59,7 +59,7 @@ const BreatheSlider = ({
   const effectiveIsPlaying = isPlaying && isActiveCategory
 
   useInstantPlayer(
-    data[slideIndex], // Pass the whole object!
+    data[slideIndex],
     effectiveIsPlaying,
     data[slideIndex].volume || 1.0,
   )
@@ -71,7 +71,7 @@ const BreatheSlider = ({
     return () => sub.remove()
   }, [])
 
-  // 2. Update Animation Logic
+  // animation logic
   const shouldAnimate = isPlaying && isActiveCategory && isAppActive
 
   useEffect(() => {
@@ -114,14 +114,14 @@ const BreatheSlider = ({
 
   return (
     <View style={styles.container}>
-      {/* 1. HORIZONTAL PAGER */}
+      {/* HORIZONTAL PAGER */}
       <PagerView
         style={styles.pagerView}
         initialPage={0}
         orientation="horizontal"
         onPageSelected={e => setSlideIndex(e.nativeEvent.position)}>
         {data.map((item, index) => {
-          // Only render canvas if we are close to the slide (Performance)
+          // Only render canvas if we are close to the slide
           const isCurrent = slideIndex === index
           // Optimize rendering
           if (Math.abs(slideIndex - index) > 1) return <View key={index} />
@@ -162,7 +162,7 @@ const BreatheSlider = ({
         })}
       </PagerView>
 
-      {/* 3. CONTROLS */}
+      {/* CONTROLS */}
       <View style={styles.powerControls}>
         <TouchableOpacity style={styles.powerIcon} onPress={togglePlayback}>
           <Ionicons
@@ -177,7 +177,7 @@ const BreatheSlider = ({
         </TouchableOpacity>
       </View>
 
-      {/* 3. TIMER & SETTINGS */}
+      {/* TIMER & SETTINGS */}
       <View style={styles.timerCountdown}>
         {timerVisible && (
           <CountdownTimer
@@ -204,11 +204,10 @@ const BreatheSlider = ({
           togglePlayback={togglePlayback}
           intentionalVideoPlay={intentionalVideoPlay}
           setIntentionalVideoPlay={setIntentionalVideoPlay}
-          // Default styling for Theta
           timerDialogBackgroundColor={'#222'}
           timerDialogFontColor={'#fff'}
           songIndex={slideIndex}
-          rainSounds={data} // Just for length check inside component
+          rainSounds={data}
         />
       </View>
     </View>

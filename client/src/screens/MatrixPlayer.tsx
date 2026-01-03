@@ -58,7 +58,7 @@ export const MatrixPlayer = () => {
         />
       </View>
 
-      {/* Slide deck  1: Binaural Beats */}
+      {/* Slide deck 3: Binaural Beats */}
       <View key="3" style={styles.page}>
         <BreatheSlider
           data={thetaSounds}
