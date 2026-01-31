@@ -1,99 +1,27 @@
-import React, {useState, useMemo} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {
   Dimensions,
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
-  Image,
 } from 'react-native'
 import PagerView from 'react-native-pager-view'
 import TimerControls from '../components/TimerControls'
 import CountdownTimer from '../components/CountdownTimer'
 import {Ionicons} from '@react-native-vector-icons/ionicons'
-import Video from 'react-native-video'
 import {useSelector} from 'react-redux'
 import {RFPercentage} from 'react-native-responsive-fontsize'
-
-import {getLocalPath} from '../services/FileService'
-import {StatusBadge} from '../components/StatusBadge'
-import {useInstantPlayer} from '../hooks/useInstantPlayer'
+import BackgroundTimer from 'react-native-background-timer'
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  withRepeat,
-  withSequence,
-  withTiming,
 } from 'react-native-reanimated'
 
+import {useInstantPlayer} from '../hooks/useInstantPlayer'
+import SlideItem from './SlideItem'
+
 const {width, height} = Dimensions.get('window')
-
-// --- NEW SUB-COMPONENT ---
-const SlideItem = ({
-  item,
-  index,
-  activeIndex,
-  downloadedFiles,
-  isPlaying,
-  intentionalVideoPlay,
-  title,
-}) => {
-  const isCurrent = index === activeIndex
-
-  // Only mount Video if it is the CURRENT slide.
-  const showVideoComponent = isCurrent
-
-  const source = useMemo(() => {
-    // Disk Cache
-    if (downloadedFiles[item.videoFile?.uri]) {
-      return {uri: 'file://' + getLocalPath(item.videoFile.uri)}
-    }
-    // HLS
-    if (item.hlsPlaylist?.uri) {
-      return item.hlsPlaylist
-    }
-    // Fallback
-    return {uri: item.videoFile?.uri}
-  }, [item, downloadedFiles])
-
-  const isLocal = !!downloadedFiles[item.videoFile?.uri]
-
-  const posterSource = item.videoPoster
-    ? item.videoPoster
-    : {uri: item.videoPosterUri}
-
-  return (
-    <View style={styles.videoContainer}>
-      {/* POSTER */}
-      <Image source={posterSource} style={styles.video} resizeMode="cover" />
-
-      {showVideoComponent && (
-        <Video
-          source={source}
-          style={styles.absoluteVideo} // Absolute to sit on top of poster
-          posterResizeMode="cover"
-          muted={true}
-          resizeMode="cover"
-          repeat={true}
-          ignoreSilentSwitch="ignore"
-          // playInBackground={false}
-          // playWhenInactive={false}
-          paused={!isPlaying || !intentionalVideoPlay}
-          // paused={false}
-          // Buffer settings to help Slide 2 load faster
-          // bufferConfig={{
-          //   minBufferMs: 5000,
-          //   maxBufferMs: 30000,
-          //   bufferForPlaybackMs: 1000, // Reduced wait time
-          //   bufferForPlaybackAfterRebufferMs: 2000,
-          // }}
-        />
-      )}
-      {/* Status Badge */}
-      {isCurrent && <StatusBadge isLocal={isLocal} isVisible={isCurrent} />}
-    </View>
-  )
-}
 
 interface CategorySliderProps {
   data: any[]
@@ -123,6 +51,9 @@ const CategorySlider = ({
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
 
+  // Background Timer Ref
+  const backgroundTimeoutRef = useRef<number | null>(null)
+
   const effectiveIsPlaying = isPlaying && isActiveCategory
 
   // Animation State
@@ -140,12 +71,38 @@ const CategorySlider = ({
     }
   }
 
-  // Audio Hook
   useInstantPlayer(
     data[songIndex],
     effectiveIsPlaying,
     data[songIndex].volume || 1.0,
   )
+
+  // --- Background timer logic ---
+  useEffect(() => {
+    if (backgroundTimeoutRef.current !== null) {
+      BackgroundTimer.clearTimeout(backgroundTimeoutRef.current)
+      backgroundTimeoutRef.current = null
+    }
+
+    if (timerVisible && effectiveIsPlaying) {
+      const totalMilliseconds = (hours * 3600 + minutes * 60 + seconds) * 1000
+
+      console.log(
+        `[Timer] Starting background timer for: ${totalMilliseconds}ms`,
+      )
+
+      backgroundTimeoutRef.current = BackgroundTimer.setTimeout(() => {
+        console.log('[Timer] Expired in background. Stopping.')
+        togglePlayback(false)
+      }, totalMilliseconds)
+    }
+
+    return () => {
+      if (backgroundTimeoutRef.current !== null) {
+        BackgroundTimer.clearTimeout(backgroundTimeoutRef.current)
+      }
+    }
+  }, [timerVisible, effectiveIsPlaying, hours, minutes, seconds])
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -154,32 +111,35 @@ const CategorySlider = ({
 
   return (
     <View style={styles.container}>
-      <PagerView
-        style={styles.pagerView}
-        initialPage={0}
-        orientation="horizontal"
-        onPageSelected={e => setSongIndex(e.nativeEvent.position)}>
-        {data.map((item, index) => {
-          // Don't render far-away slides
-          if (Math.abs(songIndex - index) > 1) return <View key={index} />
+      {/*Wrapper View:*/}
+      <View style={styles.pagerWrapper}>
+        <PagerView
+          style={styles.pagerView}
+          initialPage={0}
+          orientation="horizontal"
+          offscreenPageLimit={2}
+          overScrollMode="never"
+          onPageSelected={e => setSongIndex(e.nativeEvent.position)}>
+          {data.map((item, index) => {
+            if (Math.abs(songIndex - index) > 1) return <View key={index} />
 
-          return (
-            <View style={styles.page} key={index}>
-              <SlideItem
-                item={item}
-                index={index}
-                activeIndex={songIndex}
-                downloadedFiles={downloadedFiles}
-                isPlaying={effectiveIsPlaying}
-                intentionalVideoPlay={intentionalVideoPlay}
-                title={title}
-              />
-            </View>
-          )
-        })}
-      </PagerView>
+            return (
+              <View style={styles.page} key={index} collapsable={false}>
+                <SlideItem
+                  item={item}
+                  index={index}
+                  activeIndex={songIndex}
+                  downloadedFiles={downloadedFiles}
+                  isPlaying={effectiveIsPlaying}
+                  intentionalVideoPlay={intentionalVideoPlay}
+                />
+              </View>
+            )
+          })}
+        </PagerView>
+      </View>
 
-      {/* CONTROLS OVERLAY */}
+      {/* Controls Overlay */}
       <View style={styles.powerControls}>
         <TouchableOpacity
           style={styles.powerIcon}
@@ -214,7 +174,6 @@ const CategorySlider = ({
         )}
       </View>
 
-      {/* SWIPE HINT */}
       {showSwipeHint && !effectiveIsPlaying && (
         <View style={styles.hintContainer} pointerEvents="none">
           <Animated.View style={animatedStyle}>
@@ -260,6 +219,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
   },
+  // enforce clipping
+  pagerWrapper: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+  },
   pagerView: {
     flex: 1,
     width: '100%',
@@ -267,22 +233,8 @@ const styles = StyleSheet.create({
   },
   page: {
     flex: 1,
-  },
-  videoContainer: {
-    flex: 1,
     width: '100%',
     height: '100%',
-  },
-  video: {
-    width: '100%',
-    height: '100%',
-  },
-  absoluteVideo: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute', // Sits on top of poster
-    top: 0,
-    left: 0,
   },
   timerCountdown: {
     flexBasis: '20%',

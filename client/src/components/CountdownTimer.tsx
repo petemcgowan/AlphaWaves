@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, Dimensions} from 'react-native'
+import {Text, StyleSheet, Dimensions, View} from 'react-native'
 import {CountdownCircleTimer} from 'react-native-countdown-circle-timer'
 import {Animated} from 'react-native'
 import {RFPercentage} from 'react-native-responsive-fontsize'
@@ -12,7 +12,7 @@ interface CountdownTimerProps {
   seconds: number
   togglePlayback: (fromModal: boolean) => void
   setTimerVisible: (timerVisible: boolean) => void
-  timerControlsFontColor: string
+  timerControlsFontColor?: string
 }
 
 export default function CountdownTimer({
@@ -21,98 +21,72 @@ export default function CountdownTimer({
   seconds,
   togglePlayback,
   setTimerVisible,
-  timerControlsFontColor,
 }: CountdownTimerProps) {
   const countDownInSecondsLocal = hours * 60 * 60 + minutes * 60 + seconds
 
   const formatRemainingTime = (countDownInSeconds: number) => {
-    if (countDownInSecondsLocal === countDownInSeconds) {
-      return // no need to reformat
-    }
+    if (countDownInSeconds === 0) return '00:00'
 
-    if (countDownInSeconds === 0) {
-      return '00:00'
-    }
+    const h = Math.floor(countDownInSeconds / 3600)
+    const m = Math.floor((countDownInSeconds % 3600) / 60)
+    const s = countDownInSeconds % 60
 
-    const hoursMethod2 = Math.floor(countDownInSeconds / 3600)
-    const minutesMethod2 = Math.floor((countDownInSeconds % 3600) / 60)
-    const secondsMethod2 = countDownInSeconds % 60
+    const mStr = m < 10 ? `0${m}` : m
+    const sStr = s < 10 ? `0${s}` : s
 
-    let secondString = String(secondsMethod2)
-    if (secondsMethod2 < 10) {
-      secondString = `0${secondsMethod2}`
-    } else {
-      secondString = String(secondsMethod2)
+    if (h > 0) {
+      return `${h}:${mStr}:${sStr}`
     }
-    let minuteString = String(minutesMethod2)
-    if (minutesMethod2 < 10) {
-      minuteString = `0${minutesMethod2}`
-    } else {
-      minuteString = String(minutesMethod2)
-    }
-
-    return `${hoursMethod2}:${minuteString}:${secondString}`
+    return `${mStr}:${sStr}`
   }
 
   return (
-    <CountdownCircleTimer
-      isPlaying
-      duration={countDownInSecondsLocal}
-      initialRemainingTime={countDownInSecondsLocal - 1}
-      size={width * 0.5}
-      updateInterval={0.2}
-      strokeWidth={width * 0.04}
-      colors={[
-        '#9CDE9F',
-        '#D1F5BE',
-        '#3C91E6',
-        '#9FD356',
-        '#342E37',
-        '#AB814A',
-        '#FA824C',
-        '#4B3B40',
-        '#82735C',
-        '#9DB17C',
-      ]}
-      colorsTime={[
-        countDownInSecondsLocal,
-        (countDownInSecondsLocal / 9) * 8,
-        (countDownInSecondsLocal / 9) * 7,
-        (countDownInSecondsLocal / 9) * 6,
-        (countDownInSecondsLocal / 9) * 5,
-        (countDownInSecondsLocal / 9) * 4,
-        (countDownInSecondsLocal / 9) * 3,
-        (countDownInSecondsLocal / 9) * 2,
-        (countDownInSecondsLocal / 9) * 1,
-        0,
-      ]}
-      onComplete={() => {
-        togglePlayback(false)
-        setTimerVisible(false)
-        return [true, 0]
-      }}>
-      {({remainingTime, animatedColor}) => (
-        <Animated.Text style={{color: animatedColor}}>
-          <Text style={[styles.text, {color: timerControlsFontColor}]}>
+    <View style={styles.container}>
+      <CountdownCircleTimer
+        isPlaying
+        duration={countDownInSecondsLocal}
+        initialRemainingTime={countDownInSecondsLocal} // Fixes initial jump
+        size={width * 0.45}
+        strokeWidth={6}
+        trailStrokeWidth={6} // Match stroke width
+        trailColor="rgba(255, 255, 255, 0.2)" // Subtle glass effect
+        colors={['#A0E7E5', '#B4F8C8', '#FBE7C6']} // Calming Gradient (Cyan -> Green -> Sand)
+        colorsTime={[countDownInSecondsLocal, countDownInSecondsLocal / 2, 0]}
+        onComplete={() => {
+          togglePlayback(false)
+          setTimerVisible(false)
+          return {shouldRepeat: false}
+        }}>
+        {({remainingTime, animatedColor}) => (
+          <Animated.Text style={[styles.text, {color: animatedColor}]}>
             {formatRemainingTime(remainingTime)}
-          </Text>
-        </Animated.Text>
-      )}
-    </CountdownCircleTimer>
+          </Animated.Text>
+        )}
+      </CountdownCircleTimer>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  timerTextContainer: {
-    margin: width * 0.01,
-  },
-  timer: {
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: RFPercentage(4.3),
-    fontWeight: 'bold',
+  container: {
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  text: {
+    fontSize: RFPercentage(5),
+    fontWeight: '300',
+    fontVariant: ['tabular-nums'], // Keeps numbers from jumping width
+    letterSpacing: 2,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 10,
   },
 })
