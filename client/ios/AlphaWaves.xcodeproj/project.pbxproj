@@ -275,7 +275,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = P42X2655GH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AlphaWaves/Info.plist;
@@ -286,7 +286,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.03;
+				MARKETING_VERSION = 3.05;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -306,7 +306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = P42X2655GH;
 				INFOPLIST_FILE = AlphaWaves/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Alpha Waves";
@@ -316,7 +316,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.03;
+				MARKETING_VERSION = 3.05;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

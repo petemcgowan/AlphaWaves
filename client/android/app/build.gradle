@@ -83,8 +83,8 @@ android {
         applicationId "com.buachaillmaith.rainnoiseapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 13
-        versionName "3.03"
+        versionCode 15
+        versionName "3.05"
 
         externalNativeBuild {
             cmake {
