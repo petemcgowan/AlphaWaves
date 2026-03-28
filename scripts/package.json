@@ -1,0 +1,8 @@
+{
+  "name": "alphawaves-excalidraw-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "fractional-indexing": "^3.2.0"
+  }
+}
