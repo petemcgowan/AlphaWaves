@@ -58,31 +58,18 @@ A Singleton SoundManager service handles asset prioritization. It utilizes an "I
 
 # System Diagram
 
-```mermaid
+High-level architecture (client device vs AWS).
 
-graph TD
-    User[User Interaction] -->|Swipe Vertical| Matrix["MatrixPlayer (PagerView)"]
-    User -->|Swipe Horizontal| Deck[CategorySlider]
-    
-    subgraph "Frontend Layer (RN 0.82)"
-        Matrix -->|State| Redux[Redux Toolkit]
-        Redux -->|Persist| Disk[AsyncStorage]
-        Deck -->|Render| Skia["Skia / Reanimated"]
-    end
-
-    subgraph "Audio Engine (Hybrid)"
-        SoundManager{SoundManager Service}
-        Redux -->|Control| SoundManager
-        
-        SoundManager -->|iOS| AV["AVAudioPlayer (Bundle)"]
-        SoundManager -->|Android| Exo["GaplessAudioModule (Kotlin)"]
-    end
-
-    subgraph "Data Layer"
-        Exo -->|Cache Miss| Cloud["AWS CloudFront / S3"]
-        Exo -->|Cache Hit| LocalDisk[Device Filesystem]
-    end
-```
+<p align="center">
+  <picture>
+    <!-- Image for Dark Mode -->
+    <source media="(prefers-color-scheme: dark)" srcset="./img/Alpha_Waves_SD_v2_dark.png">
+    <!-- Image for Light Mode -->
+    <source media="(prefers-color-scheme: light)" srcset="./img/Alpha_Waves_SD_v2_light.png">
+    <!-- Fallback Image (Default) -->
+    <img alt="Alpha Waves system architecture diagram" src="./img/Alpha_Waves_SD_v2_dark.png">
+  </picture>
+</p>
 
 # 🛠️ Tech Stack
 
